@@ -2,7 +2,7 @@
 #define RECHARGE_STATION_H
 
 #include <vector>
-// #include "Drone.h"
+#include "Drone.h"
 
 #include "IEntity.h"
 #include "math/vector3.h"
@@ -36,13 +36,13 @@ class RechargeStation : public IEntity {
      * @param drone drone to be added
      */
 
-    // addDrone(Drone* drone);
+    virtual void addDrone(Drone* drone);
 
     /**
      * @brief Removes a drone from the recharge station
      * @param drone drone to be removed
      */
-    // removeDrone(Drone* drone);
+    virtual void removeDrone(Drone* drone);
 
     /**
      * @brief Returns the maximum capacity of the recharge station
@@ -51,7 +51,7 @@ class RechargeStation : public IEntity {
 
     double reacherMaxCapacity();
     protected:
-    // std::vector<Drone*> droneQue;
+    std::vector<Drone*> droneQue;
     double maxCapacity = 10;
 };
 

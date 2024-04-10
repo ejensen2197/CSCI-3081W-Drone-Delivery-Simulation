@@ -9,21 +9,22 @@ RechargeStation::~RechargeStation() {}
 //     drone->chargeBattery(dt);
 //   }
 // }
+void RechargeStation::update(double dt) {}
 
-// void RechargeStation::addDrone(Drone* drone) {
-//   if (droneQue.size() < maxCapacity) {
-//     droneQue.push_back(drone);
-//   }
-// }
+void RechargeStation::addDrone(Drone* drone) {
+  if (droneQue.size() < maxCapacity) {
+    droneQue.push_back(drone);
+  }
+}
 
-// void RechargeStation::removeDrone(Drone* drone) {
-//   for (auto it = droneQue.begin(); it != droneQue.end(); ++it) {
-//     if (*it == drone) {
-//       droneQue.erase(it);
-//       break;
-//     }
-//   }
-// }
+void RechargeStation::removeDrone(Drone* drone) {
+    for (int i = 0; i < droneQue.size(); i++) {
+        if (droneQue[i] == drone) {
+            droneQue.erase(droneQue.begin() + i);
+            break;
+        }
+    }
+}
 
 double RechargeStation::reacherMaxCapacity() { return maxCapacity; 
 }
