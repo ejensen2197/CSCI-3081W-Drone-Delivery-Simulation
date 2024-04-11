@@ -5,9 +5,10 @@ RechargeStation::RechargeStation(const JsonObject& obj) : IEntity(obj) {}
 RechargeStation::~RechargeStation() {}
 
 // void RechargeStation::chargeBattery(double dt) {
-//   for (auto drone : droneQue) {
-//     drone->chargeBattery(dt);
-//   }
+//    for (auto drone : droneQue) {
+//       if()
+//         drone->chargeBattery(dt);
+//     }
 // }
 void RechargeStation::update(double dt) {}
 
@@ -26,5 +27,6 @@ void RechargeStation::removeDrone(Drone* drone) {
     }
 }
 
-double RechargeStation::reacherMaxCapacity() { return maxCapacity; 
+double RechargeStation::reacherMaxCapacity() { 
+  return maxCapacity; 
 }
