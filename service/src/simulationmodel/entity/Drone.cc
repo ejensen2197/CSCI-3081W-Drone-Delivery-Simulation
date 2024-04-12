@@ -21,6 +21,18 @@ Drone::~Drone() {
   if (toFinalDestination) delete toFinalDestination;
 }
 
+bool Drone::isAvailable() {
+  return available;
+}
+
+PathStrategy* Drone::getPackageStrat() {
+  return toPackage;
+}
+
+P* Drone::getFinalDestStrat() {
+  return toFinalDestination;
+}
+
 void Drone::getNextDelivery() {
   if (model && model->scheduledDeliveries.size() > 0) {
     package = model->scheduledDeliveries.front();

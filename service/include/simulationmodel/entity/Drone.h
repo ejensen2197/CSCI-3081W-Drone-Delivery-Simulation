@@ -31,6 +31,21 @@ class Drone : public IEntity {
   ~Drone();
 
   /**
+  * @brief Gets availabilty of drone
+  */
+  bool isAvailable();
+
+  /**
+  * @brief Gets package strategy of drone
+  */
+  IStrategy* getPackageStrat();
+
+  /**
+  * @brief Gets final destination strategy of drone
+  */
+  IStrategy* getFinalDestStrat();
+
+  /**
    * @brief Gets the next delivery in the scheduler
    */
   void getNextDelivery();

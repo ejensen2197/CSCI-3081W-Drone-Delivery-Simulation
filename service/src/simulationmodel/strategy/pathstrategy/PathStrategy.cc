@@ -2,6 +2,10 @@
 
 PathStrategy::PathStrategy(std::vector<Vector3> p) : path(p), index(0) {}
 
+std::vector<Vector3> PathStrategy::getPoints() {
+  return path;
+}
+
 void PathStrategy::move(IEntity* entity, double dt) {
   if (isCompleted()) return;
 
