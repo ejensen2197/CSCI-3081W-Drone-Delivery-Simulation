@@ -6,6 +6,14 @@ std::vector<Vector3> PathStrategy::getPoints() {
   return path;
 }
 
+double PathStrategy::eta() {
+  double totalDist = 0;
+  for(int i = 0; i < path.size()-1; i++) {
+    totalDist += (path[i] - path[i+1]).magnitude();
+  }
+  return totalDist;
+}
+
 void PathStrategy::move(IEntity* entity, double dt) {
   if (isCompleted()) return;
 

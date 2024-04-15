@@ -26,6 +26,8 @@ class ICelebrationDecorator : public IStrategy {
    */
   virtual ~ICelebrationDecorator();
 
+  double eta();
+
   /**
    * @brief Move the entity with the behavior as described for 4 seconds.
    *

@@ -10,7 +10,7 @@ class BatteryDecorator : public IEntityDecorator<Drone> {
   BatteryDecorator(Drone* d);
   ~BatteryDecorator();
   void update(double dt);
-  bool isFull();
+  bool isFull(); //could be deletied
   void charge(double dt);
   bool isDead();
   double getBatteryLevel();
@@ -22,7 +22,10 @@ class BatteryDecorator : public IEntityDecorator<Drone> {
   Drone* drone = nullptr;
   float batteryLevel = 100;
   float maxCapacity = 100;
-  bool isCharging = false;
+  bool isCharging = false; // could be deleted
+  Vector3 rechargeStation1 = {299,49,29};
+  bool atRecharge = false;
+  bool onDelivery = false;
 
 };
 

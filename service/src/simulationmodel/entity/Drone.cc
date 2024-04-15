@@ -25,11 +25,11 @@ bool Drone::isAvailable() {
   return available;
 }
 
-PathStrategy* Drone::getPackageStrat() {
+IStrategy* Drone::getPackageStrat() {
   return toPackage;
 }
 
-P* Drone::getFinalDestStrat() {
+IStrategy* Drone::getFinalDestStrat() {
   return toFinalDestination;
 }
 

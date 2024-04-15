@@ -24,6 +24,11 @@ class IStrategy {
    * @return True if complete, false if not complete
    */
   virtual bool isCompleted() = 0;
+
+  /***
+   * @brief Calculate how long each strategy is
+  */
+  virtual double eta(){};
 };
 
 #endif

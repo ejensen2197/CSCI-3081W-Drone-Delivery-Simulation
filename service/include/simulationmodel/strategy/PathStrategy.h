@@ -20,7 +20,9 @@ class PathStrategy : public IStrategy {
    */
   PathStrategy(std::vector<Vector3> path = {});
 
-  std::vector<Vector3> getPoints(); 
+  std::vector<Vector3> getPoints();
+
+  double eta();
 
   /**
    * @brief Move toward next position in the path
