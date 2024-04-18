@@ -45,6 +45,8 @@ class Drone : public IEntity {
   */
   IStrategy* getFinalDestStrat();
 
+  void setPackageStrat(); // need logic comments
+
   /**
    * @brief Gets the next delivery in the scheduler
    */

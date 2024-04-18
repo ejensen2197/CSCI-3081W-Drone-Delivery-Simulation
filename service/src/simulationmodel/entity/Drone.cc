@@ -33,6 +33,13 @@ IStrategy* Drone::getFinalDestStrat() {
   return toFinalDestination;
 }
 
+void Drone::setPackageStrat() {
+  if (toPackage) {
+    delete toPackage;
+  }
+  toPackage = new BeelineStrategy(position, packagePosition);
+}
+
 void Drone::getNextDelivery() {
   if (model && model->scheduledDeliveries.size() > 0) {
     package = model->scheduledDeliveries.front();

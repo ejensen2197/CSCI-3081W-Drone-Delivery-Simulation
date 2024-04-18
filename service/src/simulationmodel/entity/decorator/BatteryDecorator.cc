@@ -41,10 +41,10 @@ void BatteryDecorator::update(double dt) {
 
 }
 
-void BatteryDecorator::charge(double dt) {
-    isCharging = true;
-    batteryLevel = batteryLevel + 2*dt;
-}
+// void BatteryDecorator::charge(double dt) {
+//     isCharging = true;
+//     batteryLevel = batteryLevel + 2*dt;
+// }
 
 double BatteryDecorator::getBatteryLevel() {
     return batteryLevel;
@@ -99,20 +99,30 @@ bool BatteryDecorator::isDead() {
 // then iterates through vector of rechargeStation* and compares each location with drone location 
 // it then returns vector3 of the closest recharge station's coordinates
 // then the findRecharge function uses any strategy to move to the coordinates of the rechargeStation returned from the simulation model's func
-void BatteryDecorator::findRecharge() {
+void BatteryDecorator::findRecharge(double dt) {
     if(sub->model) {
         Vector3 nearestRecharge; //logic to get nearest recharge station
-        IStrategy rechargeStrategy = new BeelineStrategy(sub->getPosition(), nearestRecharge); // strategy to nearest recharge station
+        if (rechargeStrategy == nullptr) {
+            rechargeStrategy = new BeelineStrategy(sub->getPosition(), nearestRecharge); // strategy to nearest recharge station
+        }
         rechargeStrategy->move(sub, dt); // move drone to recharge station
+        batteryLevel -= 2*dt; 
+
 
         // checking that the drone arrived to recharge station also means strategy isCompleted
         if ((sub->getPosition() - nearestRechargeStation).magnitude() < 1.0) {
             atRecharge = true; // set to true so the update function knows to charge drone
 
             delete rechargeStrategy;
+            rechargeStrategy = nullptr;
+            if(sub->isAvailable() == false) {
+               sub->setPackageStrat(); // calling new package creation
+            }
+            //SHOULD I CALL GET NEXT DELIVERY INSTEAD????
 
             // add logic to update strategy of to the package
         }
+
 
     }
 }
