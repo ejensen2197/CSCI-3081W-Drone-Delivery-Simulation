@@ -24,6 +24,14 @@ void Human::update(double dt) {
       notifyObservers(message);
     }
     atKeller = nearKeller;
+  } else if (stealPackage && !movement) {
+    //
+    if (model) movement = new AstarStrategy(position, targetPackage, model->getGraph());
+  } else if (movement && movement->isCompleted() && stealPackage) {
+    // human moved to package location and either stole package or did not
+    // have a package pointer and check if package exists, if it does then it has been stolen
+    // if stolen then notify simulation model to schedule another delivery
+    stealPackage = false;
   } else {
     if (movement) delete movement;
     Vector3 dest;
@@ -31,5 +39,12 @@ void Human::update(double dt) {
     dest.y = position.y;
     dest.z = ((static_cast<double>(rand())) / RAND_MAX) * (1600) - 800;
     if (model) movement = new AstarStrategy(position, dest, model->getGraph());
+  }
+}
+
+void Human::notifyDelivery(Vector3 packageCoords) {
+  if (!stealPackage) {
+    stealPackage = true;
+    targetPackage = packageCoords;
   }
 }

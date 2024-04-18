@@ -81,7 +81,7 @@ void Drone::update(double dt) {
 
     if (toPackage->isCompleted()) {
       std::string message = getName() + " picked up: " + package->getName();
-      notifyObservers(message);
+      notifyObservers(message);  
       delete toPackage;
       toPackage = nullptr;
       pickedUp = true;
@@ -97,6 +97,7 @@ void Drone::update(double dt) {
     if (toFinalDestination->isCompleted()) {
       std::string message = getName() + " dropped off: " + package->getName();
       notifyObservers(message);
+      notifyDropoff(this->getPosition()); 
       delete toFinalDestination;
       toFinalDestination = nullptr;
       package->handOff();

@@ -11,9 +11,11 @@ class IPublisher {
   void addObserver(const IObserver* o);
   void removeObserver(const IObserver* o);
   void notifyObservers(const std::string& message) const;
+  void notifyDropoff(const Vector3 coords);
 
  private:
   std::set<const IObserver*> observers;
+  std::set<const IObserver*> dropoffObservers;
 };
 
 #endif  // IPUBLISHER_H_

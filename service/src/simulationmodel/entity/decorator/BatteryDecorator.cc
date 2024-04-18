@@ -10,14 +10,7 @@ BatteryDecorator::~BatteryDecorator() {
 }
 
 void BatteryDecorator::update(double dt) {
-    // if at the recharge it should stay there and recharge until at full
-    if(atRecharge) {
-        if(batteryLevel == maxCapacity) {
-            atRecharge = false;
-        } else {
-            batteryLevel += 2*dt;
-        }
-    }
+    
 
     //cases:
     //drone is not on delivery and is stationary = battery decreases less
@@ -25,26 +18,26 @@ void BatteryDecorator::update(double dt) {
     //drone is on delivery but can make trip = battery decreases and call drone update to make trip
     //drone is at recharge station before delivery
     //drone is at recharge station due to being below threshold
-
-    // how do I simplify cases
-
-    // call drone update function if battery not dead and drone available for delivery
-    if (batteryLevel != 0 && sub->isAvailable() && !atRecharge) {
+    
+    // if at the recharge it should stay there and recharge until at full
+    if (atRecharge) {
+        if(batteryLevel == maxCapacity) {
+            atRecharge = false;
+        } else {
+            batteryLevel += 2*dt;
+        }
+    } else if (batteryLevel != 0 && sub->isAvailable()) {
+         // call drone update function if battery not dead and drone available for delivery
         sub->update(dt);
         this->batteryLevel -= 1*dt;
+    } else if (canMakeTrip(dt) && sub->isAvailable()==false) {
         // if it can make the delivery without dying and the drone is scheduled for a delivery
-    } else if (canMakeTrip(dt) && sub->isAvailable()==false && !atRecharge) {
         sub->update(dt); // make delivery
         this->batteryLevel -= 2*dt;
-    } else if (!canMakeTrip(dt) && sub->isAvailable()==false && !atRecharge) {
-        //go to nearest recharge station then make delivery
-        // iterate through vector of stations and path towards nearest one.
-        findRecharge();
-        
-    } else if ((drone->getPosition() - rechargeStation1).magnitude() < 1.0 && ) {
-        // if in the middle of a delivery then don't stop at recharge if happen to pass it
-
-    }
+    } else if ((!canMakeTrip(dt) && sub->isAvailable()==false) || batteryLevel < 30) {
+        // case for needing to recharge
+        findRecharge();   
+    } 
 
 }
 
@@ -80,6 +73,7 @@ double BatteryDecorator::calcTime() {
 }
 
 // make battery able to get anywhere when full so if drone can't make trip then go to recharge then make trip
+// don;t need to calc recharge station logic as long as we make it so that the drone can make it to any recharge station if above threshold
 
 //package location speed and distance tells how long 
 bool BatteryDecorator::canMakeTrip(double dt) {
@@ -107,7 +101,19 @@ bool BatteryDecorator::isDead() {
 // then the findRecharge function uses any strategy to move to the coordinates of the rechargeStation returned from the simulation model's func
 void BatteryDecorator::findRecharge() {
     if(sub->model) {
-        sub->model->
+        Vector3 nearestRecharge; //logic to get nearest recharge station
+        IStrategy rechargeStrategy = new BeelineStrategy(sub->getPosition(), nearestRecharge); // strategy to nearest recharge station
+        rechargeStrategy->move(sub, dt); // move drone to recharge station
+
+        // checking that the drone arrived to recharge station also means strategy isCompleted
+        if ((sub->getPosition() - nearestRechargeStation).magnitude() < 1.0) {
+            atRecharge = true; // set to true so the update function knows to charge drone
+
+            delete rechargeStrategy;
+
+            // add logic to update strategy of to the package
+        }
+
     }
 }
     
