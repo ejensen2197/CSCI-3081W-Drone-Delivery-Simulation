@@ -47,6 +47,8 @@ class Drone : public IEntity {
 
   void setPackageStrat(); // need logic comments
 
+  void notfiyEntities(); // need logic comments
+
   /**
    * @brief Gets the next delivery in the scheduler
    */

@@ -75,6 +75,8 @@ class Package : public IEntity {
   Vector3 destination;
   std::string strategyName;
   Robot* owner = nullptr;
+
+  //two vars delivered and stolen
 };
 
 #endif  // PACKAGE_H

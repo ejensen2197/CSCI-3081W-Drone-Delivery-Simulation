@@ -40,6 +40,17 @@ void Drone::setPackageStrat() {
   toPackage = new BeelineStrategy(position, packagePosition);
 }
 
+void Drone::notfiyEntities() {
+  // Humans are not implemented
+  //Vector = model->humanVector()
+  //iterate through human vector and compare human coords to drone coords
+  //closest human addDropoffObserver(closestHuman*) 
+  //addDropoffObserver(robot*)
+  //notifyDropoff(this->getPosition())
+  //remove human and robot from vector
+
+}
+
 void Drone::getNextDelivery() {
   if (model && model->scheduledDeliveries.size() > 0) {
     package = model->scheduledDeliveries.front();
@@ -104,7 +115,7 @@ void Drone::update(double dt) {
     if (toFinalDestination->isCompleted()) {
       std::string message = getName() + " dropped off: " + package->getName();
       notifyObservers(message);
-      notifyDropoff(this->getPosition()); 
+      //notifyEntities();
       delete toFinalDestination;
       toFinalDestination = nullptr;
       package->handOff();

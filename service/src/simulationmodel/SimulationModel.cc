@@ -13,6 +13,7 @@ SimulationModel::SimulationModel(IController& controller)
   entityFactory.addFactory(new RobotFactory());
   entityFactory.addFactory(new HumanFactory());
   entityFactory.addFactory(new HelicopterFactory());
+  entityFactory.addFactory(new RechargeStationFactory());
 }
 
 SimulationModel::~SimulationModel() {

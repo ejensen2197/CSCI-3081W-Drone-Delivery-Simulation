@@ -11,6 +11,7 @@ class IPublisher {
   void addObserver(const IObserver* o);
   void removeObserver(const IObserver* o);
   void notifyObservers(const std::string& message) const;
+  void addDropoffObserver(const IObserver* o);
   void notifyDropoff(const Vector3 coords);
 
  private:
