@@ -3,7 +3,7 @@
 
 #include <string>
 #include <vector>
-
+#include "vector3.h"
 class IObserver {
  public:
   virtual void notify(const std::string &message) const = 0;

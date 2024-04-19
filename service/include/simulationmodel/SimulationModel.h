@@ -12,6 +12,7 @@
 #include "IObserver.h"
 #include "Robot.h"
 #include "Graph.h"
+#include "RechargeStation.h"
 
 //--------------------  Model ----------------------------
 
@@ -83,6 +84,7 @@ class SimulationModel : public IObserver {
 
   std::deque<Package*> scheduledDeliveries;
 
+  Vector3 nearestRecharge(Vector3 pos);
  protected:
   IController& controller;
   std::map<int, IEntity*> entities;
@@ -90,6 +92,7 @@ class SimulationModel : public IObserver {
   void removeFromSim(int id);
   const routing::Graph* graph = nullptr;
   CompositeFactory entityFactory;
+  std::vector <Vector3*> station;
 };
 
 #endif

@@ -10,8 +10,10 @@ void IPublisher::notifyObservers(const std::string& message) const {
 
 void IPublisher::addDropoffObserver(const IObserver* o) { dropoffObservers.insert(o); }
 
-void IPublisher::notifyDropoff(const Vector3 coords) {
+void IPublisher::notifyDropoff( Vector3 coords) const {
   for (auto& o : dropoffObservers) o->notifyDelivery(coords);
 }
+
+
 
 

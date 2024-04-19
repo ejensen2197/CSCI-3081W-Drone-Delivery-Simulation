@@ -1,4 +1,5 @@
 #include "BatteryDecorator.h"
+#include "SimulationModel.h"
 
 BatteryDecorator::BatteryDecorator(Drone* d) : IEntityDecorator(d) {
     batteryLevel = 100;
@@ -17,7 +18,7 @@ void BatteryDecorator::update(double dt) {
     //drone is on delivery but cannot make the trip = recharge then finish delivery
     //drone is on delivery but can make trip = battery decreases and call drone update to make trip
     //drone is at recharge station before delivery
-    //drone is at recharge station due to being below threshold
+    //drone is at recharge station due to battery being below threshold
     
     // if at the recharge it should stay there and recharge until at full
     if (atRecharge) {
@@ -26,7 +27,7 @@ void BatteryDecorator::update(double dt) {
         } else {
             batteryLevel += 2*dt;
         }
-    } else if (batteryLevel != 0 && sub->isAvailable()) {
+    } else if (batteryLevel != 0 && sub->isAvailable()) { // what if batteryLevel < 30??
          // call drone update function if battery not dead and drone available for delivery
         sub->update(dt);
         this->batteryLevel -= 1*dt;
@@ -36,9 +37,8 @@ void BatteryDecorator::update(double dt) {
         this->batteryLevel -= 2*dt;
     } else if ((!canMakeTrip(dt) && sub->isAvailable()==false) || batteryLevel < 30) {
         // case for needing to recharge
-        findRecharge();   
+        findRecharge(dt);   
     } 
-
 }
 
 // void BatteryDecorator::charge(double dt) {
@@ -52,7 +52,7 @@ double BatteryDecorator::getBatteryLevel() {
 
 bool BatteryDecorator::isFull() {
     if(batteryLevel == maxCapacity) {
-        isCharging = false;
+        atRecharge = false;
         return true;
     }
     return false;
@@ -100,17 +100,17 @@ bool BatteryDecorator::isDead() {
 // it then returns vector3 of the closest recharge station's coordinates
 // then the findRecharge function uses any strategy to move to the coordinates of the rechargeStation returned from the simulation model's func
 void BatteryDecorator::findRecharge(double dt) {
-    if(sub->model) {
-        Vector3 nearestRecharge; //logic to get nearest recharge station
+    
+    if(model) {
+        Vector3 nearestRecharge = model->nearestRecharge(sub->getPosition()); //logic to get nearest recharge station
         if (rechargeStrategy == nullptr) {
             rechargeStrategy = new BeelineStrategy(sub->getPosition(), nearestRecharge); // strategy to nearest recharge station
         }
         rechargeStrategy->move(sub, dt); // move drone to recharge station
         batteryLevel -= 2*dt; 
 
-
         // checking that the drone arrived to recharge station also means strategy isCompleted
-        if ((sub->getPosition() - nearestRechargeStation).magnitude() < 1.0) {
+        if ((sub->getPosition() - nearestRecharge).magnitude() < 1.0) {
             atRecharge = true; // set to true so the update function knows to charge drone
 
             delete rechargeStrategy;

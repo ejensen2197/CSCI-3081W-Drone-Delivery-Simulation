@@ -5,6 +5,7 @@
 #include "HumanFactory.h"
 #include "PackageFactory.h"
 #include "RobotFactory.h"
+#include "RechargeStationFactory.h"
 
 SimulationModel::SimulationModel(IController& controller)
     : controller(controller) {
@@ -28,7 +29,7 @@ IEntity* SimulationModel::createEntity(const JsonObject& entity) {
   std::string name = entity["name"];
   JsonArray position = entity["position"];
   std::cout << name << ": " << position << std::endl;
-
+  
   IEntity* myNewEntity = nullptr;
   if (myNewEntity = entityFactory.createEntity(entity)) {
     // Call AddEntity to add it to the view
@@ -38,8 +39,27 @@ IEntity* SimulationModel::createEntity(const JsonObject& entity) {
     // Add the simulation model as a observer to myNewEntity
     myNewEntity->addObserver(this);
   }
+  std::string type = entity["type"];
+  if (type == "Recharge")
+  {
+    station.push_back(myNewEntity->getPosition());
+  }
 
   return myNewEntity;
+}
+
+Vector3 SimulationModel::nearestRecharge(Vector3 pos) {
+  Vector3 closest = station[0];
+  double distance = pos.dist(station[0]);
+  for (int i =0; i< station.size(); i++)
+  {
+    if (distance < (station[i] - pos).magnitude())
+    {
+      distance = (station[i] - pos).magnitude();
+      closest = station[i];
+    }
+  }
+  return closest;
 }
 
 void SimulationModel::removeEntity(int id) { removed.insert(id); }

@@ -47,7 +47,9 @@ class Drone : public IEntity {
 
   void setPackageStrat(); // need logic comments
 
-  void notfiyEntities(); // need logic comments
+  void notifyEntities(); // need logic comments
+
+  void notifyDelivery(Vector3 packageCoords);
 
   /**
    * @brief Gets the next delivery in the scheduler
@@ -78,6 +80,7 @@ class Drone : public IEntity {
   Package* package = nullptr;
   IStrategy* toPackage = nullptr;
   IStrategy* toFinalDestination = nullptr;
+  
 };
 
 #endif

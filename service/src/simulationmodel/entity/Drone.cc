@@ -37,10 +37,10 @@ void Drone::setPackageStrat() {
   if (toPackage) {
     delete toPackage;
   }
-  toPackage = new BeelineStrategy(position, packagePosition);
+  toPackage = new BeelineStrategy(position, package->getPosition());
 }
 
-void Drone::notfiyEntities() {
+void Drone::notifyEntities() {
   // Humans are not implemented
   //Vector = model->humanVector()
   //iterate through human vector and compare human coords to drone coords
@@ -50,6 +50,8 @@ void Drone::notfiyEntities() {
   //remove human and robot from vector
 
 }
+
+void Drone::notifyDelivery(Vector3 packageCoords) {}
 
 void Drone::getNextDelivery() {
   if (model && model->scheduledDeliveries.size() > 0) {

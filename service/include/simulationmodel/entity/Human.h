@@ -16,7 +16,9 @@ class Human : public IEntity, public IObserver {
 
   void update(double dt);
 
-  void notify(const std::string &message) {};
+  void notify(const std::string &message) const {};
+
+  void notifyDelivery (Vector3 packageCoords);
 
  private:
   static Vector3 kellerPosition;
