@@ -77,5 +77,20 @@
       "speed": 50.0,
       "offset": [0, 1.5, 0]
     }
+  },
+  {
+    "command": "CreateEntity",
+    "params": {
+      "type": "Recharge",
+      "name": "Recharge1",
+      "mesh": "assets/model/rechargeStation.glb",
+      "position": [498.292, 270, -228.623],
+      "scale": [0.025, 0.025, 0.025],
+      "rotation": [0, 0, 0, 0],
+      "direction": [1, 0, 0],
+      "speed": 0,
+      "offset": [0, 1.5, 0]
+    }
   }
+
 ]

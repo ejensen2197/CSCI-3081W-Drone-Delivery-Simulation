@@ -92,7 +92,7 @@ class SimulationModel : public IObserver {
   void removeFromSim(int id);
   const routing::Graph* graph = nullptr;
   CompositeFactory entityFactory;
-  std::vector <Vector3*> station;
+  std::vector <Vector3> station;
 };
 
 #endif

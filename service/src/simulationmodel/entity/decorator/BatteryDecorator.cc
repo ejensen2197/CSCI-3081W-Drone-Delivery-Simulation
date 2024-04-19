@@ -29,14 +29,17 @@ void BatteryDecorator::update(double dt) {
         }
     } else if (batteryLevel != 0 && sub->isAvailable()) { // what if batteryLevel < 30??
          // call drone update function if battery not dead and drone available for delivery
+        std::cout << "idle" << std::endl;
         sub->update(dt);
         this->batteryLevel -= 1*dt;
     } else if (canMakeTrip(dt) && sub->isAvailable()==false) {
         // if it can make the delivery without dying and the drone is scheduled for a delivery
+        std::cout << "delivery scheduled" << std::endl;
         sub->update(dt); // make delivery
         this->batteryLevel -= 2*dt;
     } else if ((!canMakeTrip(dt) && sub->isAvailable()==false) || batteryLevel < 30) {
         // case for needing to recharge
+        std::cout << "need recharge" << std::endl;
         findRecharge(dt);   
     } 
 }
@@ -68,7 +71,7 @@ double BatteryDecorator::calcTime() {
 
     IStrategy* finalDestStrat = sub->getFinalDestStrat(); //get final destination strategy
     totalDist += finalDestStrat->eta();
-    
+    std::cout << "total time: " << totalDist / sub->getSpeed() << std::endl;
     return totalDist / sub->getSpeed(); 
 }
 
@@ -80,8 +83,11 @@ bool BatteryDecorator::canMakeTrip(double dt) {
     double pathBattery = calcTime()*dt*2 ; //gets how much battery path will take
     double batteryThreshold = 25.0; //drone shouldn't make delivery if it causes battery to be lower than this
     if(pathBattery < batteryLevel - batteryThreshold) {
+        std::cout << "Can make trip total battery need is: " << pathBattery << " total battery of drone: " << batteryLevel << std::endl;
         return true;
+        
     }
+    std::cout << "Cannot make trip" << std::endl;
     return false;
 }
 
