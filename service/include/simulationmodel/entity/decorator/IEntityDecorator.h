@@ -12,8 +12,9 @@ class IEntityDecorator : public T {
   virtual ~IEntityDecorator() {
     if (sub) delete sub;
   }
-  virtual void linkModel(SimulationModel* model) {
-    return sub->linkModel(model);
+  virtual void linkModel(SimulationModel* model_) {
+    this->model = model_;
+    return sub->linkModel(model_);
   }
   virtual int getId() const { return sub->getId(); }
   virtual Vector3 getPosition() const { return sub->getPosition(); }

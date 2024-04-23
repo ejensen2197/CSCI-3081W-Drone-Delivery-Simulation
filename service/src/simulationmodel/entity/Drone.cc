@@ -51,7 +51,7 @@ void Drone::notifyEntities() {
 
 }
 
-void Drone::notifyDelivery(Vector3 packageCoords) {}
+//void Drone::notifyDelivery(Vector3 packageCoords) {}
 
 void Drone::getNextDelivery() {
   if (model && model->scheduledDeliveries.size() > 0) {
@@ -98,7 +98,7 @@ void Drone::update(double dt) {
 
   if (toPackage) {
     toPackage->move(this, dt);
-
+    
     if (toPackage->isCompleted()) {
       std::string message = getName() + " picked up: " + package->getName();
       notifyObservers(message);  
@@ -117,7 +117,7 @@ void Drone::update(double dt) {
     if (toFinalDestination->isCompleted()) {
       std::string message = getName() + " dropped off: " + package->getName();
       notifyObservers(message);
-      //notifyEntities();
+     // notifyDropoff(this->getPosition()); 
       delete toFinalDestination;
       toFinalDestination = nullptr;
       package->handOff();

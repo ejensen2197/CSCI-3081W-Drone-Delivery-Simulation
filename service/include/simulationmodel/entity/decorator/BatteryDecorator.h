@@ -30,6 +30,7 @@ class BatteryDecorator : public IEntityDecorator<Drone> {
   bool atRecharge = false;
   bool onDelivery = false;
   IStrategy* rechargeStrategy = nullptr;
+  Vector3 lastPosition;
 
 };
 

@@ -116,6 +116,7 @@ class IEntity : public IPublisher {
    */
   virtual void update(double dt) = 0;
 
+
  protected:
   SimulationModel* model = nullptr;
   int id = -1;
