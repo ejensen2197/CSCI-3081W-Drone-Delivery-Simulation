@@ -40,11 +40,19 @@ void Human::update(double dt) {
     dest.z = ((static_cast<double>(rand())) / RAND_MAX) * (1600) - 800;
     if (model) movement = new AstarStrategy(position, dest, model->getGraph());
   }
+  // updating distance from package
+  if (stealPackage) {
+    distanceFromPackage = position.dist(targetPackage);
+  }
+  else {
+    distanceFromPackage = std::numeric_limits<double>::max();
+  }
 }
 
 void Human::notifyDelivery(Vector3 packageCoords) {
   if (!stealPackage) {
     stealPackage = true;
     targetPackage = packageCoords;
+    distanceFromPackage = position.dist(targetPackage);
   }
 }

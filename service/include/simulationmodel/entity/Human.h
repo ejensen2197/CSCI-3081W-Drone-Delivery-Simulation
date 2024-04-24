@@ -26,6 +26,7 @@ class Human : public IEntity, public IObserver {
   bool atKeller = false;
   bool stealPackage = false;
   Vector3 targetPackage;
+  double distanceFromPackage;
 };
 
 #endif
