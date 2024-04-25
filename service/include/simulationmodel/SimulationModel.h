@@ -83,9 +83,19 @@ class SimulationModel : public IObserver {
   void notify(const std::string& message) const;
 
   std::deque<Package*> scheduledDeliveries;
-
+  /**
+   * @brief gets the closest recharge station from position
+   * @param pos type Vector3, the initial position
+   *
+   * @returns the location of nearest recharge station
+   */
   Vector3 nearestRecharge(Vector3 pos);
-
+  /**
+   * @brief gets closest package at position
+   * @param currentPosition type Vector3 current position
+   *
+   * @returns the position of closest package
+   */
   Vector3 getClosestPackage(const Vector3& currentPosition);
  protected:
   IController& controller;

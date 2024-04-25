@@ -19,7 +19,10 @@ class Human : public IEntity, public IObserver {
   void notify(const std::string &message) const {};
 
   void notifyDelivery (Vector3 packageCoords);
-
+  /**
+   * @brief moves to the closest package's position
+   * @return void
+   */
   void moveToClosestPackage();
 
  private:
