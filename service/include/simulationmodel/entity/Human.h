@@ -4,7 +4,7 @@
 #include "IEntity.h"
 #include "IStrategy.h"
 
-class Human : public IEntity, public IObserver {
+class Human : public IEntity {
  public:
   /**
    * @brief Drones are created with a name
@@ -16,9 +16,15 @@ class Human : public IEntity, public IObserver {
 
   void update(double dt);
 
-  void notify(const std::string &message) const {};
+  // void notify(const std::string &message) const {};
 
-  void notifyDelivery (Vector3 packageCoords);
+  void notifyDelivery(Vector3 packageCoords);
+
+  void notifyArrive(std::string& message);
+
+  void cancelSteal();
+
+  void steal();
 
  private:
   static Vector3 kellerPosition;
@@ -26,6 +32,7 @@ class Human : public IEntity, public IObserver {
   bool atKeller = false;
   bool stealPackage = false;
   Vector3 targetPackage;
+  
 };
 
 #endif

@@ -6,6 +6,7 @@
 
 #include "AstarStrategy.h"
 #include "SimulationModel.h"
+#include "BeelineStrategy.h"
 
 Vector3 Human::kellerPosition(64.0, 254.0, -210.0);
 
@@ -24,14 +25,6 @@ void Human::update(double dt) {
       notifyObservers(message);
     }
     atKeller = nearKeller;
-  } else if (stealPackage && !movement) {
-    //
-    if (model) movement = new AstarStrategy(position, targetPackage, model->getGraph());
-  } else if (movement && movement->isCompleted() && stealPackage) {
-    // human moved to package location and either stole package or did not
-    // have a package pointer and check if package exists, if it does then it has been stolen
-    // if stolen then notify simulation model to schedule another delivery
-    stealPackage = false;
   } else {
     if (movement) delete movement;
     Vector3 dest;
@@ -43,8 +36,44 @@ void Human::update(double dt) {
 }
 
 void Human::notifyDelivery(Vector3 packageCoords) {
-  if (!stealPackage) {
-    stealPackage = true;
+  if(this->position.dist(packageCoords) > 50 && !stealPackage){
     targetPackage = packageCoords;
+    if(movement) delete movement;
+    movement = new BeelineStrategy(this->position, packageCoords);
+    stealPackage = true;
+  }
+  // if (!stealPackage) {
+  //   stealPackage = true;
+  //   targetPackage = packageCoords;
+  // }
+}
+
+void Human::cancelSteal() {
+  stealPackage = false;
+  if(movement) delete movement;
+  Vector3 dest;
+  dest.x = ((static_cast<double>(rand())) / RAND_MAX) * (2900) - 1400;
+  dest.y = position.y;
+  dest.z = ((static_cast<double>(rand())) / RAND_MAX) * (1600) - 800;
+  if (model) movement = new AstarStrategy(position, dest, model->getGraph());
+}
+
+void Human::steal() {
+  std::string message = this->getName() + " stole a package";
+  notifyObservers(message);
+  stealPackage = false;
+  if(movement) delete movement;
+  Vector3 dest;
+  dest.x = ((static_cast<double>(rand())) / RAND_MAX) * (2900) - 1400;
+  dest.y = position.y;
+  dest.z = ((static_cast<double>(rand())) / RAND_MAX) * (1600) - 800;
+  if (model) movement = new AstarStrategy(position, dest, model->getGraph());
+}
+
+void Human::notifyArrive(std::string &message) {
+  if (message == "human") {
+    steal();
+  } else if (message == "robot") {
+    cancelSteal();
   }
 }

@@ -7,6 +7,7 @@
 #include "math/vector3.h"
 #include "util/json.h"
 
+
 class Robot;
 
 class Package : public IEntity {
@@ -70,11 +71,14 @@ class Package : public IEntity {
    */
   virtual void handOff();
 
+  virtual void dropOff();
+
  protected:
   bool requiresDelivery_ = true;
   Vector3 destination;
   std::string strategyName;
   Robot* owner = nullptr;
+  bool arrived = false;
 
   //two vars delivered and stolen
 };

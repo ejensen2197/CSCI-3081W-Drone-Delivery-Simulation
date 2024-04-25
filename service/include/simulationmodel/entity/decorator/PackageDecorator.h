@@ -19,6 +19,7 @@ class PackageDecorator : public IEntityDecorator<Package> {
   virtual void handOff() {
     if (getOwner()) getOwner()->receive(this);
   }
+  virtual void update(double dt) {sub->update(dt);}
 };
 
 #endif

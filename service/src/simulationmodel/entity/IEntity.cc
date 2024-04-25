@@ -51,4 +51,4 @@ void IEntity::rotate(double angle) {
   direction.z = dirTmp.x * std::sin(angle) + dirTmp.z * std::cos(angle);
 }
 
-
+void IEntity::notify(const std::string &message) const {}

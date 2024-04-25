@@ -7,6 +7,7 @@
 #include "RobotFactory.h"
 #include "RechargeStationFactory.h"
 
+
 SimulationModel::SimulationModel(IController& controller)
     : controller(controller) {
   entityFactory.addFactory(new DroneFactory());
@@ -40,9 +41,12 @@ IEntity* SimulationModel::createEntity(const JsonObject& entity) {
     myNewEntity->addObserver(this);
   }
   std::string type = entity["type"];
-  if (type == "Recharge")
-  {
+  if (type == "Recharge") {
     station.push_back(myNewEntity->getPosition());
+  }
+
+  if (type == "human") {
+    humans.push_back(myNewEntity);
   }
 
   return myNewEntity;
@@ -97,7 +101,13 @@ void SimulationModel::scheduleTrip(const JsonObject& details) {
     }
   }
 
+  // why is there something in the set initially at this point despite the only adding observers after the if
   if (receiver && package) {
+    package->addDropoffObserver(receiver);
+    for(int i = 0; i < humans.size(); i++) {
+      // add all currently existing humans to list of observers
+      package->addDropoffObserver(humans[i]);
+    }
     package->initDelivery(receiver);
     std::string strategyName = details["search"];
     package->setStrategyName(strategyName);
@@ -147,4 +157,27 @@ void SimulationModel::notify(const std::string& message) const {
   JsonObject details;
   details["message"] = message;
   this->controller.sendEventToView("Notification", details);
+}
+
+IEntity* SimulationModel::checkArrival(Vector3 package, IEntity* robot) {
+  if (humans.size() != 0) {
+    IEntity* closest = humans[0];
+    double dist = 0;
+    for (int i = 0; i < humans.size(); i++) {
+      if (dist < humans[i]->getPosition().dist(closest->getPosition())) {
+        dist = humans[i]->getPosition().dist(closest->getPosition());
+        closest = humans[i];
+      }
+    }
+    // check if the robot is closer than the closest human
+    if (closest->getPosition().dist(robot->getPosition()) < dist) {
+      closest = robot;
+    }
+    // only return something if it is within a specific threshold
+    if (closest->getPosition().dist(package) < 1.0) {
+      return closest;
+    }
+  }
+  //else return nullptr
+  return nullptr;
 }

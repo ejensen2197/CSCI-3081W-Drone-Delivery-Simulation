@@ -11,12 +11,13 @@ class IPublisher {
   void addObserver(const IObserver* o);
   void removeObserver(const IObserver* o);
   void notifyObservers(const std::string& message) const;
-  void addDropoffObserver(const IObserver* o);
-  // void notifyDropoff( Vector3 coords) const;
+  void addDropoffObserver(IObserver* o);
+  void notifyDropoff(Vector3 coords);
+  void notifyArrival(std::string& message);
 
  private:
   std::set<const IObserver*> observers;
-  std::set<const IObserver*> dropoffObservers;
+  std::set<IObserver*> dropoffObservers;
 };
 
 #endif  // IPUBLISHER_H_

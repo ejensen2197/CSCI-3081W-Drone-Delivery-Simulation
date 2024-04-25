@@ -19,7 +19,7 @@ class SimulationModel;
  * in the physical system. Subclasses of IEntity can override the `Update`
  * function to implement their own movement behavior.
  */
-class IEntity : public IPublisher {
+class IEntity : public IPublisher, public IObserver {
  public:
   /**
    * @brief Constructor that assigns a unique ID to the entity.
@@ -116,7 +116,8 @@ class IEntity : public IPublisher {
    */
   virtual void update(double dt) = 0;
 
-
+  void notify(const std::string &message) const;
+  
  protected:
   SimulationModel* model = nullptr;
   int id = -1;

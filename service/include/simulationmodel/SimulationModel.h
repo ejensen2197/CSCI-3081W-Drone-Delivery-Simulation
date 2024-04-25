@@ -13,6 +13,7 @@
 #include "Robot.h"
 #include "Graph.h"
 #include "RechargeStation.h"
+#include "Human.h"
 
 //--------------------  Model ----------------------------
 
@@ -82,6 +83,8 @@ class SimulationModel : public IObserver {
 
   void notify(const std::string& message) const;
 
+  IEntity* checkArrival(Vector3 package, IEntity* robot);
+
   std::deque<Package*> scheduledDeliveries;
 
   Vector3 nearestRecharge(Vector3 pos);
@@ -93,6 +96,8 @@ class SimulationModel : public IObserver {
   const routing::Graph* graph = nullptr;
   CompositeFactory entityFactory;
   std::vector <Vector3> station;
+  std::vector <IEntity*> humans;
+  
 };
 
 #endif

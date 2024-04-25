@@ -9,6 +9,8 @@ class IObserver {
   virtual void notify(const std::string &message) const = 0;
 
   virtual void notifyDelivery(Vector3 packageCoords) {}
+
+  virtual void notifyArrive(std::string &message) {}
 };
 
 #endif  // IOBSERVER_H_

@@ -6,6 +6,7 @@
 #include "IEntity.h"
 #include "math/vector3.h"
 #include "util/json.h"
+#include "IStrategy.h"
 
 class Package;
 
@@ -38,10 +39,24 @@ class Robot : public IEntity {
    */
   void receive(Package* p);
 
+  // void notify(const std::string &message) const;
+
+  void notifyDelivery(Vector3 packageCoords);
+
+  void notifyArrive(std::string &message);
+
+  void setPackageLocation(Vector3 location);
+
+  Vector3 getPackageLocation();
+
   bool requestedDelivery = true;
 
  protected:
+  bool delivered = false;
   Package* package = nullptr;
+  IStrategy* toPackage = nullptr;
+  bool stolen = false;
+  Vector3 packageLocation;
 };
 
 #endif  // ROBOT_H
