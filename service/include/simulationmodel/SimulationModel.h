@@ -85,6 +85,8 @@ class SimulationModel : public IObserver {
   std::deque<Package*> scheduledDeliveries;
 
   Vector3 nearestRecharge(Vector3 pos);
+
+  Vector3 getClosestPackage(const Vector3& currentPosition);
  protected:
   IController& controller;
   std::map<int, IEntity*> entities;

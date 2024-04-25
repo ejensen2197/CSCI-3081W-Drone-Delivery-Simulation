@@ -148,3 +148,22 @@ void SimulationModel::notify(const std::string& message) const {
   details["message"] = message;
   this->controller.sendEventToView("Notification", details);
 }
+
+Vector3 SimulationModel::getClosestPackage(const Vector3& currentPosition) {
+  Vector3 closestPackagePosition;
+
+  double minDistance = std::numeric_limits<double>::max();
+
+  for (const auto& [id, entity] : entities) {
+    if (Package* package = dynamic_cast<Package*>(entity)) {
+      if (!package->isCompleted()) {
+        double distance = currentPosition.dist(package->getPosition());
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestPackagePosition = package->getPosition();
+        }
+      }
+    }
+  }
+  return closestPackagePosition;
+}

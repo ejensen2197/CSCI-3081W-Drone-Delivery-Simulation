@@ -56,3 +56,14 @@ void Human::notifyDelivery(Vector3 packageCoords) {
     distanceFromPackage = position.dist(targetPackage);
   }
 }
+
+void Human::moveToClosestPackage() {
+  if (model) {
+    Vector3 closestPackage = model->getClosestPackage(position);
+    if (closestPackage.isCompleted()) {
+      if (movement) delete movement;
+      movement = new AstarStrategy(position, closestPackage, model->getGraph());
+      targetPackage = closestPackage;
+    }
+  }
+}

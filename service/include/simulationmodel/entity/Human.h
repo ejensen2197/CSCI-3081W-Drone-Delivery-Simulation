@@ -20,6 +20,8 @@ class Human : public IEntity, public IObserver {
 
   void notifyDelivery (Vector3 packageCoords);
 
+  void moveToClosestPackage();
+
  private:
   static Vector3 kellerPosition;
   IStrategy* movement = nullptr;
