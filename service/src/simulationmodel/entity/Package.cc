@@ -43,7 +43,7 @@ void Package::initDelivery(Robot* owner) {
   this->owner = owner;
   owner->requestedDelivery = false;
   requiresDelivery_ = false;
-  std::cout << "Package Location: " <<owner->getPackageLocation() << std::endl;
+  std::cout << "Package Dest: " <<owner->getPackageLocation() << std::endl;
   destination = owner->getPackageLocation();
 }
 
@@ -56,5 +56,7 @@ void Package::handOff() {
 void Package::dropOff() {
   arrived = true;
   std::cout << "This position: " << this->position << std::endl;
-  notifyDropoff(this->position);
+  std::cout << "Destination position: " << this->destination << std::endl;
+  //why can't I just use owner rather than getOwner()
+  notifyDropoff(this->getOwner()->getPackageLocation());
 }

@@ -108,7 +108,7 @@ void SimulationModel::scheduleTrip(const JsonObject& details) {
       // add all currently existing humans to list of observers
       package->addDropoffObserver(humans[i]);
     }
-    package->initDelivery(receiver);
+    package->initDelivery(receiver); // when package->owner is called its null but receiver still exits
     std::string strategyName = details["search"];
     package->setStrategyName(strategyName);
     scheduledDeliveries.push_back(package);

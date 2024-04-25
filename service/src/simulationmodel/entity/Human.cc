@@ -37,6 +37,7 @@ void Human::update(double dt) {
 
 void Human::notifyDelivery(Vector3 packageCoords) {
   if(this->position.dist(packageCoords) > 50 && !stealPackage){
+    packageCoords.y = 270;
     targetPackage = packageCoords;
     if(movement) delete movement;
     movement = new BeelineStrategy(this->position, packageCoords);

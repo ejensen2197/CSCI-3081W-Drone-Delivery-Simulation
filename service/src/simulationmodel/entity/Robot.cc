@@ -6,8 +6,9 @@ Robot::Robot(const JsonObject& obj) : IEntity(obj) {}
 // void Robot::notify(const std::string &message) const {}
 
 void Robot::notifyDelivery(Vector3 packageCoords) {
-    std::cout<<"Delivery!!!!!"<<std::endl;
-    toPackage = new BeelineStrategy(position, packageCoords);
+    std::cout<<"Delivery!!!!!: " <<packageCoords <<std::endl;
+    packageCoords.y = 270;
+    toPackage = new BeelineStrategy(this->position, packageCoords);
 }
 
 void Robot::update(double dt) {
