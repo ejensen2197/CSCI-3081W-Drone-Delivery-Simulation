@@ -134,7 +134,7 @@ void BatteryDecorator::findRecharge(double dt) {
         rechargeStrategy->move(sub, dt); // move drone to recharge station
         
         double diff = this->lastPosition.dist(sub->getPosition());
-        this->batteryLevel = batteryLevel - (diff/20);
+        this->batteryLevel = batteryLevel - (diff/100);
         this->lastPosition = sub->getPosition();
         // checking that the drone arrived to recharge station also means strategy isCompleted
         if ((sub->getPosition() - nearestRecharge).magnitude() < 1.0 || rechargeStrategy->isCompleted()) {

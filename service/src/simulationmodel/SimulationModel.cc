@@ -57,7 +57,7 @@ Vector3 SimulationModel::nearestRecharge(Vector3 pos) {
   double distance = pos.dist(station[0]);
   for (int i =0; i< station.size(); i++)
   {
-    if (distance < (station[i] - pos).magnitude())
+    if (distance > (station[i] - pos).magnitude())
     {
       distance = (station[i] - pos).magnitude();
       closest = station[i];
