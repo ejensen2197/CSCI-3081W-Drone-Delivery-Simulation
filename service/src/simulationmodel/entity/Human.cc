@@ -75,6 +75,7 @@ void Human::notifyArrive(std::string &message) {
   if (message == "human") {
     steal();
   } else if (message == "robot") {
+    std::cout <<message << std::endl;
     cancelSteal();
   }
 }

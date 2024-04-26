@@ -66,12 +66,16 @@ class Package : public IEntity {
    */
   virtual void initDelivery(Robot* owner);
 
-  /**
-   * @brief Gives the robot/owner this package
-   */
+
   virtual void handOff();
 
   virtual void dropOff();
+
+  virtual bool getArrived();
+
+  virtual void setArrived(bool val);
+
+  virtual void notifyEntitys(std::string type);
 
  protected:
   bool requiresDelivery_ = true;

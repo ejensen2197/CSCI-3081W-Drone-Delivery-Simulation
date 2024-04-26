@@ -8,12 +8,12 @@
 
 class IPublisher {
  public:
-  void addObserver(const IObserver* o);
-  void removeObserver(const IObserver* o);
-  void notifyObservers(const std::string& message) const;
-  void addDropoffObserver(IObserver* o);
-  void notifyDropoff(Vector3 coords);
-  void notifyArrival(std::string& message);
+  virtual void addObserver(const IObserver* o);
+  virtual void removeObserver(const IObserver* o);
+  virtual void notifyObservers(const std::string& message) const;
+  virtual void addDropoffObserver(IObserver* o);
+  virtual void notifyDropoff(Vector3 coords);
+  virtual void notifyArrival(std::string& message);
 
  private:
   std::set<const IObserver*> observers;

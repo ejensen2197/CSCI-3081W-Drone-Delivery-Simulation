@@ -20,19 +20,19 @@ void Package::setStrategyName(std::string strategyName_) {
 // how do I change the location of the robot to be random within a specific parameter?
 void Package::update(double dt) {
   // check if package has arrived, if so try to check if entity has reached the package
-  if(arrived) {
-    IEntity* nearest = model->checkArrival(this->position, this->owner);
+  if(this->getArrived()) {
+    IEntity* nearest = model->checkArrival(this->getOwner()->getPackageLocation(), this->getOwner());
     if(nearest) { // check that it is not null
       JsonObject det = nearest->getDetails();
       std::string type = det["type"];
       if (type == "human") {
-        notifyArrival(type); 
+        this->notifyEntitys(type); 
         std::cout << "Package stolen" << std::endl;
-        arrived = false;
+        this->setArrived(false);
       } else if (type == "robot") {
-        notifyArrival(type);
+        this->notifyEntitys(type);
         std::cout << "Robot recieved" << std::endl;
-        arrived = false;
+        this->setArrived(false);
         handOff();
       }
     }
@@ -43,7 +43,7 @@ void Package::initDelivery(Robot* owner) {
   this->owner = owner;
   owner->requestedDelivery = false;
   requiresDelivery_ = false;
-  std::cout << "Package Dest: " <<owner->getPackageLocation() << std::endl;
+  std::cout << "Package Dest: " << owner->getPackageLocation() << std::endl;
   destination = owner->getPackageLocation();
 }
 
@@ -53,10 +53,21 @@ void Package::handOff() {
   }
 }
 
+void Package::notifyEntitys(std::string type) {
+  this->notifyArrival(type);
+}
+
+void Package::setArrived(bool val) {
+  arrived = val;
+}
+
+bool Package::getArrived() {
+  return arrived;
+}
+
 void Package::dropOff() {
-  arrived = true;
+  this->setArrived(true);
   std::cout << "This position: " << this->position << std::endl;
   std::cout << "Destination position: " << this->destination << std::endl;
-  //why can't I just use owner rather than getOwner()
   notifyDropoff(this->getOwner()->getPackageLocation());
 }

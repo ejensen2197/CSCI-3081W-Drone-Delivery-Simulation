@@ -18,7 +18,11 @@ void IPublisher::notifyDropoff(Vector3 coords) {
 }
 
 void IPublisher::notifyArrival(std::string& message) {
-  for (auto& o : dropoffObservers) o->notifyArrive(message);
+  for (auto& o : dropoffObservers) {
+    std::cout << o << std::endl;
+    o->notifyArrive(message);
+  }
+  
 }
 
 

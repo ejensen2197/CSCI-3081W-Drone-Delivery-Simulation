@@ -28,6 +28,12 @@ class IEntityDecorator : public T {
   virtual void setColor(std::string col_) { return sub->setColor(col_); }
   virtual void rotate(double angle) { return sub->rotate(angle); }
   virtual void update(double dt) { return sub->update(dt); }
+  virtual void addObserver(const IObserver* o) {return sub->addObserver(o);}
+  virtual void removeObserver(const IObserver* o){return sub->removeObserver(o);}
+  virtual void notifyObservers(const std::string& message) const {return sub->notifyObservers(message);}
+  virtual void addDropoffObserver(IObserver* o) {return sub->addDropoffObserver(o);}
+  virtual void notifyDropoff(Vector3 coords) {return sub->notifyDropoff(coords);}
+  virtual void notifyArrival(std::string& message) {return sub->notifyArrival(message);} 
 
  protected:
   T* sub = nullptr;

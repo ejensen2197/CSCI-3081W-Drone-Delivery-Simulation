@@ -162,19 +162,20 @@ void SimulationModel::notify(const std::string& message) const {
 IEntity* SimulationModel::checkArrival(Vector3 package, IEntity* robot) {
   if (humans.size() != 0) {
     IEntity* closest = humans[0];
-    double dist = 0;
+    double dist = closest->getPosition().dist(package);
     for (int i = 0; i < humans.size(); i++) {
-      if (dist < humans[i]->getPosition().dist(closest->getPosition())) {
-        dist = humans[i]->getPosition().dist(closest->getPosition());
+      if (dist < humans[i]->getPosition().dist(package)) {
+        dist = humans[i]->getPosition().dist(package);
         closest = humans[i];
       }
     }
     // check if the robot is closer than the closest human
-    if (closest->getPosition().dist(robot->getPosition()) < dist) {
+    if (package.dist(robot->getPosition()) < dist) {
       closest = robot;
+      std::cout<<"Robot dist to package: " << closest->getPosition().dist(package) << std::endl;
     }
     // only return something if it is within a specific threshold
-    if (closest->getPosition().dist(package) < 1.0) {
+    if (closest->getPosition().dist(package) < 20.0) {
       return closest;
     }
   }
