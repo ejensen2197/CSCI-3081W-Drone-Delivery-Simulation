@@ -84,7 +84,175 @@
       "type": "Recharge",
       "name": "Recharge1",
       "mesh": "assets/model/rechargeStation.glb",
-      "position": [498.292, 270, -228.623],
+      "position": [700.292, 230, -400.623],
+      "scale": [0.025, 0.025, 0.025],
+      "rotation": [0, 0, 0, 0],
+      "direction": [1, 0, 0],
+      "speed": 0,
+      "offset": [0, 1.5, 0]
+    }
+  },
+  {
+    "command": "CreateEntity",
+    "params": {
+      "type": "Recharge",
+      "name": "Recharge2",
+      "mesh": "assets/model/rechargeStation.glb",
+      "position": [398.292, 230, -228.623],
+      "scale": [0.025, 0.025, 0.025],
+      "rotation": [0, 0, 0, 0],
+      "direction": [1, 0, 0],
+      "speed": 0,
+      "offset": [0, 1.5, 0]
+    }
+  },
+  {
+    "command": "CreateEntity",
+    "params": {
+      "type": "Recharge",
+      "name": "Recharge3",
+      "mesh": "assets/model/rechargeStation.glb",
+      "position": [100.292, 230, 0.623],
+      "scale": [0.025, 0.025, 0.025],
+      "rotation": [0, 0, 0, 0],
+      "direction": [1, 0, 0],
+      "speed": 0,
+      "offset": [0, 1.5, 0]
+    }
+  },
+  {
+    "command": "CreateEntity",
+    "params": {
+      "type": "Recharge",
+      "name": "Recharge4",
+      "mesh": "assets/model/rechargeStation.glb",
+      "position": [-600.292, 230, 228.623],
+      "scale": [0.025, 0.025, 0.025],
+      "rotation": [0, 0, 0, 0],
+      "direction": [1, 0, 0],
+      "speed": 0,
+      "offset": [0, 1.5, 0]
+    }
+  },
+  {
+    "command": "CreateEntity",
+    "params": {
+      "type": "Recharge",
+      "name": "Recharge5",
+      "mesh": "assets/model/rechargeStation.glb",
+      "position": [1000.292, 230, 300.623],
+      "scale": [0.025, 0.025, 0.025],
+      "rotation": [0, 0, 0, 0],
+      "direction": [1, 0, 0],
+      "speed": 0,
+      "offset": [0, 1.5, 0]
+    }
+  },
+  {
+    "command": "CreateEntity",
+    "params": {
+      "type": "Recharge",
+      "name": "Recharge6",
+      "mesh": "assets/model/rechargeStation.glb",
+      "position": [800.292, 230, 600.623],
+      "scale": [0.025, 0.025, 0.025],
+      "rotation": [0, 0, 0, 0],
+      "direction": [1, 0, 0],
+      "speed": 0,
+      "offset": [0, 1.5, 0]
+    }
+  },
+  {
+    "command": "CreateEntity",
+    "params": {
+      "type": "Recharge",
+      "name": "Recharge7",
+      "mesh": "assets/model/rechargeStation.glb",
+      "position": [-259.292, 230, -200.623],
+      "scale": [0.025, 0.025, 0.025],
+      "rotation": [0, 0, 0, 0],
+      "direction": [1, 0, 0],
+      "speed": 0,
+      "offset": [0, 1.5, 0]
+    }
+  },
+  {
+    "command": "CreateEntity",
+    "params": {
+      "type": "Recharge",
+      "name": "Recharge8",
+      "mesh": "assets/model/rechargeStation.glb",
+      "position": [1200.292, 230, 640.623],
+      "scale": [0.025, 0.025, 0.025],
+      "rotation": [0, 0, 0, 0],
+      "direction": [1, 0, 0],
+      "speed": 0,
+      "offset": [0, 1.5, 0]
+    }
+  },
+  {
+    "command": "CreateEntity",
+    "params": {
+      "type": "Recharge",
+      "name": "Recharge9",
+      "mesh": "assets/model/rechargeStation.glb",
+      "position": [1400.292, 230, 150.623],
+      "scale": [0.025, 0.025, 0.025],
+      "rotation": [0, 0, 0, 0],
+      "direction": [1, 0, 0],
+      "speed": 0,
+      "offset": [0, 1.5, 0]
+    }
+  },
+  {
+    "command": "CreateEntity",
+    "params": {
+      "type": "Recharge",
+      "name": "Recharge10",
+      "mesh": "assets/model/rechargeStation.glb",
+      "position": [-900.292, 230, -100.623],
+      "scale": [0.025, 0.025, 0.025],
+      "rotation": [0, 0, 0, 0],
+      "direction": [1, 0, 0],
+      "speed": 0,
+      "offset": [0, 1.5, 0]
+    }
+  },
+  {
+    "command": "CreateEntity",
+    "params": {
+      "type": "Recharge",
+      "name": "Recharge11",
+      "mesh": "assets/model/rechargeStation.glb",
+      "position": [-800.292, 230, 600.623],
+      "scale": [0.025, 0.025, 0.025],
+      "rotation": [0, 0, 0, 0],
+      "direction": [1, 0, 0],
+      "speed": 0,
+      "offset": [0, 1.5, 0]
+    }
+  },
+  {
+    "command": "CreateEntity",
+    "params": {
+      "type": "Recharge",
+      "name": "Recharge12",
+      "mesh": "assets/model/rechargeStation.glb",
+      "position": [-200.292, 230, 700.623],
+      "scale": [0.025, 0.025, 0.025],
+      "rotation": [0, 0, 0, 0],
+      "direction": [1, 0, 0],
+      "speed": 0,
+      "offset": [0, 1.5, 0]
+    }
+  },
+  {
+    "command": "CreateEntity",
+    "params": {
+      "type": "Recharge",
+      "name": "Recharge13",
+      "mesh": "assets/model/rechargeStation.glb",
+      "position": [-1100.292, 230, 400.623],
       "scale": [0.025, 0.025, 0.025],
       "rotation": [0, 0, 0, 0],
       "direction": [1, 0, 0],
@@ -92,5 +260,5 @@
       "offset": [0, 1.5, 0]
     }
   }
-
+  
 ]
