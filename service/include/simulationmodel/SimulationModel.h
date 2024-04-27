@@ -14,6 +14,8 @@
 #include "Graph.h"
 #include "RechargeStation.h"
 #include "Human.h"
+#include "Thief.h"
+#include "Package.h"
 
 //--------------------  Model ----------------------------
 
@@ -97,6 +99,7 @@ class SimulationModel : public IObserver {
   CompositeFactory entityFactory;
   std::vector <Vector3> station;
   std::vector <IEntity*> humans;
+  std::vector <IEntity*> thiefs;
   
 };
 

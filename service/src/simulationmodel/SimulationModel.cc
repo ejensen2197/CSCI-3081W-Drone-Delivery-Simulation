@@ -1,4 +1,5 @@
 #include "SimulationModel.h"
+#include "IController.h"
 
 #include "DroneFactory.h"
 #include "HelicopterFactory.h"
@@ -6,6 +7,7 @@
 #include "PackageFactory.h"
 #include "RobotFactory.h"
 #include "RechargeStationFactory.h"
+#include "ThiefFactory.h"
 
 
 SimulationModel::SimulationModel(IController& controller)
@@ -16,7 +18,8 @@ SimulationModel::SimulationModel(IController& controller)
   entityFactory.addFactory(new HumanFactory());
   entityFactory.addFactory(new HelicopterFactory());
   entityFactory.addFactory(new RechargeStationFactory());
-}
+  // entityFactory.addFactory(new ThiefFactory());
+  }                              
 
 SimulationModel::~SimulationModel() {
   // Delete dynamically allocated variables
@@ -47,6 +50,10 @@ IEntity* SimulationModel::createEntity(const JsonObject& entity) {
 
   if (type == "human") {
     humans.push_back(myNewEntity);
+  }
+
+  if (type == "thief") {
+    thiefs.push_back(myNewEntity);
   }
 
   return myNewEntity;

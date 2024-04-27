@@ -67,6 +67,23 @@
   {
     "command": "CreateEntity",
     "params": {
+      "type": "thief",
+      "name": "Thief-OG",
+      "mesh": "assets/model/human.glb",
+      "position": [498.292, 270, -228.623],
+      "scale": [0.005, 0.005, 0.005],
+      "rotation": [0, 0, 0, 0],
+      "direction": [1, 0, 0],
+      "speed": 10.0,
+      "radius": 1.0,
+      "start": 2.0,
+      "duration": 2.0,
+      "offset": [0, -0.5, 0]
+    }
+  },
+  {
+    "command": "CreateEntity",
+    "params": {
       "type": "helicopter",
       "name": "Helicopter",
       "mesh": "assets/model/helicopter.glb",
