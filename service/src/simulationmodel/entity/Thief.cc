@@ -10,13 +10,18 @@
 
 Vector3 Thief::kellerPosition(64.0, 254.0, -210.0);
 
-Thief::Thief(const JsonObject& obj) : IEntity(obj) {
-  atKeller = false;
-  stealPackage = false;
+Thief::Thief(const JsonObject& obj) : Human(obj) {
 }
 
 Thief::~Thief() {
   if (movement) delete movement;
+}
+
+std::string Thief::getColor() const {
+  auto format = "hsl(%lf, %lf%%, %lf%%)";
+  char color[100];
+  snprintf(color, sizeof(color), format, 0, 100, 50);
+  return color;
 }
 
 void Thief::update(double dt) {
@@ -43,6 +48,7 @@ void Thief::notifyDelivery(Vector3 packageCoords) {
     packageCoords.y = 270;
     targetPackage = packageCoords;
     if(movement) delete movement;
+    std::cout <<"I want Package" << std::endl;
     movement = new BeelineStrategy(this->position, packageCoords);
     stealPackage = true;
   }

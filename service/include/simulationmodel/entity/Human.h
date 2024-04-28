@@ -16,23 +16,10 @@ class Human : public IEntity {
 
   void update(double dt);
 
-  // void notify(const std::string &message) const {};
-
-  void notifyDelivery(Vector3 packageCoords);
-
-  void notifyArrive(std::string& message);
-
-  void cancelSteal();
-
-  void steal();
-
  private:
   static Vector3 kellerPosition;
   IStrategy* movement = nullptr;
   bool atKeller = false;
-  bool stealPackage = false;
-  Vector3 targetPackage;
-  
 };
 
 #endif

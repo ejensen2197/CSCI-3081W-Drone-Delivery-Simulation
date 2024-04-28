@@ -3,10 +3,11 @@
 
 #include "IEntity.h"
 #include "IStrategy.h"
+#include "Human.h"
 
 class Thief;
 
-class Thief : public IEntity {
+class Thief : public Human {
  public:
   /**
    * @brief Drones are created with a name
@@ -17,6 +18,8 @@ class Thief : public IEntity {
   ~Thief();
 
   void update(double dt);
+
+  std::string getColor() const;
 
   // void notify(const std::string &message) const {};
 

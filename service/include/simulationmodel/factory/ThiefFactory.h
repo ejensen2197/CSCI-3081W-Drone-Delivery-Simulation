@@ -1,5 +1,5 @@
-#ifndef THIEF_H_
-#define THIEF_H_
+#ifndef THIEF_FACTORY_H_
+#define THIEF_FACTORY_H_
 
 #include <vector>
 

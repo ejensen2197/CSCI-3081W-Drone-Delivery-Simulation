@@ -98,7 +98,6 @@ class SimulationModel : public IObserver {
   const routing::Graph* graph = nullptr;
   CompositeFactory entityFactory;
   std::vector <Vector3> station;
-  std::vector <IEntity*> humans;
   std::vector <IEntity*> thiefs;
   
 };

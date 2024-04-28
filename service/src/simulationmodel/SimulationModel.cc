@@ -43,17 +43,15 @@ IEntity* SimulationModel::createEntity(const JsonObject& entity) {
     // Add the simulation model as a observer to myNewEntity
     myNewEntity->addObserver(this);
   }
-  std::string type = entity["type"];
+  JsonObject det = myNewEntity->getDetails();
+  std::string type = det["type"]; 
   if (type == "Recharge") {
     station.push_back(myNewEntity->getPosition());
   }
-
-  if (type == "human") {
-    humans.push_back(myNewEntity);
-  }
-
+  std::cout << type << std::endl;
   if (type == "thief") {
     thiefs.push_back(myNewEntity);
+    std::cout << "thief added" << std::endl;
   }
 
   return myNewEntity;
@@ -111,9 +109,10 @@ void SimulationModel::scheduleTrip(const JsonObject& details) {
   // why is there something in the set initially at this point despite the only adding observers after the if
   if (receiver && package) {
     package->addDropoffObserver(receiver);
-    for(int i = 0; i < humans.size(); i++) {
-      // add all currently existing humans to list of observers
-      package->addDropoffObserver(humans[i]);
+    for(int i = 0; i < thiefs.size(); i++) {
+      // add all currently existing thiefs to list of observers
+      std::cout << "Thief added" << std::endl;
+      package->addDropoffObserver(thiefs[i]);
     }
     package->initDelivery(receiver); // when package->owner is called its null but receiver still exits
     std::string strategyName = details["search"];
@@ -167,13 +166,13 @@ void SimulationModel::notify(const std::string& message) const {
 }
 
 IEntity* SimulationModel::checkArrival(Vector3 package, IEntity* robot) {
-  if (humans.size() != 0) {
-    IEntity* closest = humans[0];
+  if (thiefs.size() != 0) {
+    IEntity* closest = thiefs[0];
     double dist = closest->getPosition().dist(package);
-    for (int i = 0; i < humans.size(); i++) {
-      if (dist < humans[i]->getPosition().dist(package)) {
-        dist = humans[i]->getPosition().dist(package);
-        closest = humans[i];
+    for (int i = 0; i < thiefs.size(); i++) {
+      if (dist < thiefs[i]->getPosition().dist(package)) {
+        dist = thiefs[i]->getPosition().dist(package);
+        closest = thiefs[i];
       }
     }
     // check if the robot is closer than the closest human

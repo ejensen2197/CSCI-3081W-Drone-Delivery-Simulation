@@ -40,7 +40,7 @@ void BatteryDecorator::update(double dt) {
         sub->update(dt); // make delivery
         double diff = this->lastPosition.dist(sub->getPosition());
         this->batteryLevel = batteryLevel - (diff/20);
-        std::cout << "Battery Level: " << batteryLevel <<std::endl;
+        //std::cout << "Battery Level: " << batteryLevel <<std::endl;
         this->lastPosition = sub->getPosition();
     } else if ((!canMakeTrip(dt) && sub->isAvailable()==false) || batteryLevel < 30) {
         // case for needing to recharge
@@ -82,7 +82,7 @@ double BatteryDecorator::calcTime() {
         totalDist += finalDestStrat->eta();
     }
     
-    std::cout << "total Dist: " << totalDist  << std::endl;
+    //std::cout << "total Dist: " << totalDist  << std::endl;
     return totalDist; 
 }
 
@@ -95,7 +95,7 @@ bool BatteryDecorator::canMakeTrip(double dt) {
 
     double calcPosDistance = batteryLevel*20; //distance we can travl
     if(pathBattery < calcPosDistance){
-        std::cout << "Can make trip total battery need is: " << pathBattery << " total path battery of drone: " << calcPosDistance << std::endl;
+        //std::cout << "Can make trip total battery need is: " << pathBattery << " total path battery of drone: " << calcPosDistance << std::endl;
         return true;
     }
     // double batteryThreshold = 30.0; //drone shouldn't make delivery if it causes battery to be lower than this
