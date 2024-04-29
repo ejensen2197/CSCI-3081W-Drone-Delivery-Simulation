@@ -18,18 +18,18 @@ To build the simulation, navigate to the project directory team-001-58-finalproj
 then write the following into the terminal:
 
 
-#make -j
+# make -j
 
 After that, to run the simulation, type the following command into the terminal:
 
 
-#make run
+# make run
 
 
 This should start the program for the simulation. 
 After it is started, open up a web browser and put the following into the search bar and hit enter:
 
-#127.0.0.1:8081
+# 127.0.0.1:8081
 
 
 
