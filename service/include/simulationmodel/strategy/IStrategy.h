@@ -28,7 +28,7 @@ class IStrategy {
   /***
    * @brief Calculate how long each strategy is
   */
-  virtual double eta(){};
+  virtual double dist(){return 0;}
 };
 
 #endif

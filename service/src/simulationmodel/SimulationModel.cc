@@ -60,10 +60,8 @@ IEntity* SimulationModel::createEntity(const JsonObject& entity) {
 Vector3 SimulationModel::nearestRecharge(Vector3 pos) {
   Vector3 closest = station[0];
   double distance = pos.dist(station[0]);
-  for (int i =0; i< station.size(); i++)
-  {
-    if (distance > (station[i] - pos).magnitude())
-    {
+  for (int i =0; i< station.size(); i++) {
+    if (distance > (station[i] - pos).magnitude()) {
       distance = (station[i] - pos).magnitude();
       closest = station[i];
     }
@@ -185,6 +183,6 @@ IEntity* SimulationModel::checkArrival(Vector3 package, IEntity* robot) {
       return closest;
     }
   }
-  //else return nullptr
+  // else return nullptr
   return nullptr;
 }

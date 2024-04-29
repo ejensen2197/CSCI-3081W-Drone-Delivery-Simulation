@@ -12,15 +12,6 @@ BatteryDecorator::~BatteryDecorator() {
 }
 
 void BatteryDecorator::update(double dt) {
-    
-
-    //cases:
-    //drone is not on delivery and is stationary = battery decreases less
-    //drone is on delivery but cannot make the trip = recharge then finish delivery
-    //drone is on delivery but can make trip = battery decreases and call drone update to make trip
-    //drone is at recharge station before delivery
-    //drone is at recharge station due to battery being below threshold
-    
     // if at the recharge it should stay there and recharge until at full
     if (atRecharge) {
         if(batteryLevel > maxCapacity) {
@@ -32,7 +23,7 @@ void BatteryDecorator::update(double dt) {
     } else if (batteryLevel == 0) {
         std::cout << "drone is dead" << std::endl;
     } else if (batteryLevel != 0 && sub->isAvailable()) { // what if batteryLevel < 30??
-         // call drone update function if battery not dead and drone available for delivery
+        // call drone update function if battery not dead and drone available for delivery
         //std::cout << "idle" << std::endl;
         sub->update(dt);
     } else if (canMakeTrip(dt) && sub->isAvailable()==false) {
@@ -49,51 +40,33 @@ void BatteryDecorator::update(double dt) {
     } 
 }
 
-// void BatteryDecorator::charge(double dt) {
-//     isCharging = true;
-//     batteryLevel = batteryLevel + 2*dt;
-// }
-
 double BatteryDecorator::getBatteryLevel() {
     return batteryLevel;
 }
 
-bool BatteryDecorator::isFull() {
-    if(batteryLevel == maxCapacity) {
-        atRecharge = false;
-        return true;
-    }
-    return false;
-}
-
-double BatteryDecorator::calcTime() {
-    //2*dt*(timeForDelivery + timeToRecharge) < batteryLevel then true  
-    //distance is the path of the strategy
-
+double BatteryDecorator::calcDist() {
     double totalDist = 0;
-
     if(sub->getPackageStrat()) {
-        IStrategy* packageStrat = sub->getPackageStrat(); //get package strategy
-        totalDist += packageStrat->eta();
+        // get package strategy
+        IStrategy* packageStrat = sub->getPackageStrat(); 
+        totalDist += packageStrat->dist();
     }
     
     if(sub->getFinalDestStrat()) {
-        IStrategy* finalDestStrat = sub->getFinalDestStrat(); //get final destination strategy
-        totalDist += finalDestStrat->eta();
+        // get final destination strategy
+        IStrategy* finalDestStrat = sub->getFinalDestStrat(); 
+        totalDist += finalDestStrat->dist();
     }
-    
     //std::cout << "total Dist: " << totalDist  << std::endl;
     return totalDist; 
 }
 
-// make battery able to get anywhere when full so if drone can't make trip then go to recharge then make trip
-// don;t need to calc recharge station logic as long as we make it so that the drone can make it to any recharge station if above threshold
-
-//package location speed and distance tells how long 
+// package location speed and distance tells how long 
 bool BatteryDecorator::canMakeTrip(double dt) {
-    double pathBattery = calcTime(); //gets how much battery path will take
-
+    // gets how much battery path will take
+    double pathBattery = calcDist(); 
     double calcPosDistance = batteryLevel*20; //distance we can travl
+
     if(pathBattery < calcPosDistance){
         //std::cout << "Can make trip total battery need is: " << pathBattery << " total path battery of drone: " << calcPosDistance << std::endl;
         return true;

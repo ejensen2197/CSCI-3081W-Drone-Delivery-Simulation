@@ -45,11 +45,10 @@ class Drone : public IEntity {
   */
   IStrategy* getFinalDestStrat();
 
-  void setPackageStrat(); // need logic comments
-
-  // void notifyEntities(); // need logic comments
-
-  // void notifyDelivery(Vector3 packageCoords);
+  /**
+  * @brief Sets toPackage strategy based off of drone's location
+  */
+  void setPackageStrat(); 
 
   /**
    * @brief Gets the next delivery in the scheduler

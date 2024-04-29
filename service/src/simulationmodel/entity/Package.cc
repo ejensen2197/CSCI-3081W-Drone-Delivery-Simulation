@@ -15,9 +15,7 @@ bool Package::requiresDelivery() const { return requiresDelivery_; }
 void Package::setStrategyName(std::string strategyName_) {
   strategyName = strategyName_;
 }
-//how do I fix the errors?
-// how do I add it all the current humans and potential new humans to the list of observers
-// how do I change the location of the robot to be random within a specific parameter?
+
 void Package::update(double dt) {
   // check if package has arrived, if so try to check if entity has reached the package
   if(this->getArrived()) {
@@ -25,7 +23,7 @@ void Package::update(double dt) {
     if(nearest) { // check that it is not null
       JsonObject det = nearest->getDetails();
       std::string type = det["type"];
-      if (type == "human") {
+      if (type == "thief") {
         this->notifyEntitys(type); 
         std::cout << "Package stolen" << std::endl;
         this->setArrived(false);

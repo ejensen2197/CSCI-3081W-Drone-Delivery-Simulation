@@ -53,7 +53,7 @@ class Package : public IEntity {
   virtual void setStrategyName(std::string strategyName_);
 
   /**
-   * @brief Updates the Package
+   * @brief Updates the Package by checking for nearest entity
    *
    * @param dt difference in time since last update
    */
@@ -66,15 +66,33 @@ class Package : public IEntity {
    */
   virtual void initDelivery(Robot* owner);
 
-
+  /**
+   * @brief Hands the package off to the owner
+   */
   virtual void handOff();
 
+  /**
+   * @brief notifies observers of delivery
+   */
   virtual void dropOff();
 
+  /**
+   * @brief getter for arrived variable 
+   */
   virtual bool getArrived();
 
+  /**
+   * @brief setter for arrived variable
+   * 
+   * @param val Type bool contains what to set arrived
+   */
   virtual void setArrived(bool val);
 
+  /**
+   * @brief notify observers if entity arrives at package
+   * 
+   * @param type Type string of type entity at package
+   */
   virtual void notifyEntitys(std::string type);
 
  protected:
@@ -83,8 +101,6 @@ class Package : public IEntity {
   std::string strategyName;
   Robot* owner = nullptr;
   bool arrived = false;
-
-  //two vars delivered and stolen
 };
 
 #endif  // PACKAGE_H

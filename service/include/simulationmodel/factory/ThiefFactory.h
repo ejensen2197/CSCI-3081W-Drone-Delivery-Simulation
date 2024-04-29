@@ -13,7 +13,7 @@
 class ThiefFactory : public IEntityFactory {
  public:
   /**
-   * @brief Destructor for HumanFactory class.
+   * @brief Destructor for ThiefFactory class.
    **/
   virtual ~ThiefFactory() {}
 

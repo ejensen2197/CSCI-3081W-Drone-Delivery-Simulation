@@ -20,7 +20,7 @@ void ICelebrationDecorator::move(IEntity* entity, double dt) {
 }
 
 double ICelebrationDecorator::eta() {
-  return time + strategy->eta();
+  return 0;
 }
 
 bool ICelebrationDecorator::isCompleted() { return time <= 0; }

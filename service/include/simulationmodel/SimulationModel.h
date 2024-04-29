@@ -85,11 +85,23 @@ class SimulationModel : public IObserver {
 
   void notify(const std::string& message) const;
 
+  /**
+   * @brief Returns entity closest to the package
+   *
+   * @param package Type Vector3 contains coordinates of pacakge
+   * @param robot Type IEntity* contains pointer of robot
+   * assigned to the package
+   */
   IEntity* checkArrival(Vector3 package, IEntity* robot);
 
-  std::deque<Package*> scheduledDeliveries;
-
+  /**
+   * @brief Returns closest recharge station to the drone
+   *
+   * @param pos Type Vector3 contains coordinates of drone
+   */
   Vector3 nearestRecharge(Vector3 pos);
+
+  std::deque<Package*> scheduledDeliveries;
  protected:
   IController& controller;
   std::map<int, IEntity*> entities;

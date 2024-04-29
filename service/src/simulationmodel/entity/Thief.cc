@@ -52,10 +52,6 @@ void Thief::notifyDelivery(Vector3 packageCoords) {
     movement = new BeelineStrategy(this->position, packageCoords);
     stealPackage = true;
   }
-  // if (!stealPackage) {
-  //   stealPackage = true;
-  //   targetPackage = packageCoords;
-  // }
 }
 
 void Thief::cancelSteal() {

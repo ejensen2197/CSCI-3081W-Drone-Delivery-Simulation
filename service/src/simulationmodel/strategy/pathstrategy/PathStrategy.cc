@@ -6,7 +6,7 @@ std::vector<Vector3> PathStrategy::getPoints() {
   return path;
 }
 
-double PathStrategy::eta() {
+double PathStrategy::dist() {
   double totalDist = 0;
   for(int i = 0; i < path.size()-1; i++) {
     totalDist += (path[i] - path[i+1]).magnitude();

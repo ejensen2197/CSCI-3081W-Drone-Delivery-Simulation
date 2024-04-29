@@ -20,9 +20,15 @@ class PathStrategy : public IStrategy {
    */
   PathStrategy(std::vector<Vector3> path = {});
 
+  /**
+   * @brief return the path of the strategy
+  */
   std::vector<Vector3> getPoints();
 
-  double eta();
+  /**
+   * @brief Calculate how long each strategy is
+  */
+  double dist();
 
   /**
    * @brief Move toward next position in the path
