@@ -18,10 +18,14 @@ Thief::~Thief() {
 }
 
 std::string Thief::getColor() const {
+  double hue = 0;
+  double saturation = 100;
+  double lightness = 50;
   auto format = "hsl(%lf, %lf%%, %lf%%)";
   char color[100];
-  snprintf(color, sizeof(color), format, 0, 100, 50);
-  return color;
+  //snprintf(color, sizeof(color), format, 0, 100, 50);
+  snprintf(color, sizeof(color), format, hue, saturation, lightness);
+  return std::string(color);
 }
 
 void Thief::update(double dt) {
