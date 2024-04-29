@@ -32,5 +32,17 @@ After it is started, open up a web browser and put the following into the search
 # 127.0.0.1:8081
 
 
+# Simulation Features
 
+__Drones__
+
+A Drone will spawn whenever the simulation is created. Drones in the simulation will receive delivery requests through 
+the scheduling page at the top right. The drones use many different pathing strategies such as: Astar, Beeline, Dijkstra, Breadth First Search,
+and Depth First Search to retrieve packages and deliver those packages to robots. 
+Depending on the drone's pathing strategy, the drone when completing a delivery will celebrate by either spinning or jumping.
+
+
+__Packages__ 
+
+Packages spawn whenever a delivery is scheduled. The packages can be picked up by drones and then delivered to robots.
 
