@@ -50,9 +50,10 @@ class Robot : public IEntity {
   /**
    * @brief package arrival at the destination
    *
-   * @param message Message indicating an arrival
+   * @param type Type String of type of entity
+   * @param id ID of Entity
    */
-  void notifyArrive(std::string &message);
+  void notifyArrive(std::string &type, int id);
 
   /**
    * @brief sets the location of the target package

@@ -35,7 +35,7 @@ class IPublisher {
    * @param type Type string address contains type
    * entity that arrived to package
   */
-  virtual void notifyArrival(std::string& type);
+  virtual void notifyArrival(std::string& type, int id);
 
  private:
   std::set<const IObserver*> observers;

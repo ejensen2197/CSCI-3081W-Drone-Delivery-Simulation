@@ -24,11 +24,12 @@ void Package::update(double dt) {
       JsonObject det = nearest->getDetails();
       std::string type = det["type"];
       if (type == "thief") {
-        this->notifyEntitys(type); 
+        this->notifyEntitys(type, nearest->getId()); 
         std::cout << "Package stolen" << std::endl;
         this->setArrived(false);
+        model->removeEntity(this->getId());
       } else if (type == "robot") {
-        this->notifyEntitys(type);
+        this->notifyEntitys(type, nearest->getId());
         std::cout << "Robot recieved" << std::endl;
         this->setArrived(false);
         handOff();
@@ -51,8 +52,8 @@ void Package::handOff() {
   }
 }
 
-void Package::notifyEntitys(std::string type) {
-  this->notifyArrival(type);
+void Package::notifyEntitys(std::string type, int id) {
+  this->notifyArrival(type, id);
 }
 
 void Package::setArrived(bool val) {

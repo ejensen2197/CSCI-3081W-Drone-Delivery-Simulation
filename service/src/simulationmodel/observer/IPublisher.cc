@@ -16,10 +16,10 @@ void IPublisher::notifyDropoff(Vector3 coords) {
   } 
 }
 
-void IPublisher::notifyArrival(std::string& type) {
+void IPublisher::notifyArrival(std::string& type, int id) {
   for (auto& o : dropoffObservers) {
     std::cout << o << std::endl;
-    o->notifyArrive(type);
+    o->notifyArrive(type, id);
   }
   
 }

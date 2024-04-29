@@ -48,12 +48,12 @@ void Thief::update(double dt) {
 }
 
 void Thief::notifyDelivery(Vector3 packageCoords) {
-  if(this->position.dist(packageCoords) > 50 && !stealPackage){
+  if(this->position.dist(packageCoords) < 200 && !stealPackage){
     packageCoords.y = 270;
     targetPackage = packageCoords;
     if(movement) delete movement;
     std::cout <<"I want Package" << std::endl;
-    movement = new BeelineStrategy(this->position, packageCoords);
+    movement = new AstarStrategy(this->position, packageCoords, model->getGraph());
     stealPackage = true;
   }
 }
@@ -71,6 +71,7 @@ void Thief::cancelSteal() {
 void Thief::steal() {
   std::string message = this->getName() + " stole a package";
   notifyObservers(message);
+  std::cout << "Stole the package" << std::endl;
   stealPackage = false;
   if(movement) delete movement;
   Vector3 dest;
@@ -80,11 +81,12 @@ void Thief::steal() {
   if (model) movement = new AstarStrategy(position, dest, model->getGraph());
 }
 
-void Thief::notifyArrive(std::string &message) {
-  if (message == "thief") {
+void Thief::notifyArrive(std::string &type, int id) {
+  if (type == "thief" && id == this->getId()) {
     steal();
-  } else if (message == "robot") {
-    std::cout <<message << std::endl;
+  } else if (type == "robot") {
+    cancelSteal();
+  } else {
     cancelSteal();
   }
 }

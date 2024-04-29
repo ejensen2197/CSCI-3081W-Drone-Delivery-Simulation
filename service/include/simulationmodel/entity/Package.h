@@ -92,8 +92,9 @@ class Package : public IEntity {
    * @brief notify observers if entity arrives at package
    * 
    * @param type Type string of type entity at package
+   * @param id Type int of id of entity at package
    */
-  virtual void notifyEntitys(std::string type);
+  virtual void notifyEntitys(std::string type, int id);
 
  protected:
   bool requiresDelivery_ = true;

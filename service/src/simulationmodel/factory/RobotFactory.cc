@@ -8,7 +8,7 @@ IEntity* RobotFactory::createEntity(const JsonObject& entity) {
     newRob->setPackageLocation(newRob->getPosition());
     
     // Define the radius within which the new position should be generated
-    double radius = 600.0; // Adjust this value as needed
+    double radius = 400.0; // Adjust this value as needed
 
     // Generate random offsets within the radius
     double deltaX = ((static_cast<double>(rand())) / RAND_MAX) * (2 * radius) - radius;

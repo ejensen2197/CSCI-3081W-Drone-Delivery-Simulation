@@ -43,10 +43,11 @@ class Thief : public Human {
   /**
    * @brief Notifies thief of an entity arrival to package 
    * 
-   * @param message Type string address contains entity type
+   * @param type Type string address contains entity type
    * that reaches the package first
+   * @param id Type int of ID of entity
   */
-  void notifyArrive(std::string& message);
+  void notifyArrive(std::string& type, int id);
 
   /**
    * @brief will stop stealing package if 

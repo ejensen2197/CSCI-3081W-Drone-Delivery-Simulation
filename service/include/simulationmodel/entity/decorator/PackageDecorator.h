@@ -23,7 +23,7 @@ class PackageDecorator : public IEntityDecorator<Package> {
 
   virtual bool getArrived() { return sub->getArrived(); }
   virtual void setArrived(bool val) { sub->setArrived(val); }
-  virtual void notifyEntitys(std::string type) { sub->notifyEntitys(type); }
+  virtual void notifyEntitys(std::string type, int id) { sub->notifyEntitys(type, id); }
 };
 
 #endif

@@ -1,5 +1,7 @@
 #include "Robot.h"
 #include "BeelineStrategy.h"
+#include "AstarStrategy.h"
+#include "SimulationModel.h"
 
 Robot::Robot(const JsonObject& obj) : IEntity(obj) {}
 
@@ -8,7 +10,8 @@ Robot::Robot(const JsonObject& obj) : IEntity(obj) {}
 void Robot::notifyDelivery(Vector3 packageCoords) {
     std::cout<<"Delivery!!!!!: " <<packageCoords <<std::endl;
     packageCoords.y = 270;
-    toPackage = new BeelineStrategy(this->position, packageCoords);
+    this->speed = 20;
+    toPackage =  new AstarStrategy(this->position, packageCoords, model->getGraph());   
 }
 
 void Robot::update(double dt) {
@@ -28,8 +31,8 @@ void Robot::update(double dt) {
     
 }
 
-void Robot::notifyArrive(std::string& message) {
-    if (message == "human") {
+void Robot::notifyArrive(std::string& type, int id) {
+    if (type == "thief") {
         stolen = true;
         if (toPackage) {
             delete toPackage;

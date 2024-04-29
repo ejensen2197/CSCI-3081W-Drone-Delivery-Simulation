@@ -18,7 +18,7 @@ SimulationModel::SimulationModel(IController& controller)
   entityFactory.addFactory(new HumanFactory());
   entityFactory.addFactory(new HelicopterFactory());
   entityFactory.addFactory(new RechargeStationFactory());
-  // entityFactory.addFactory(new ThiefFactory());
+  entityFactory.addFactory(new ThiefFactory());
   }                              
 
 SimulationModel::~SimulationModel() {
@@ -50,6 +50,7 @@ IEntity* SimulationModel::createEntity(const JsonObject& entity) {
   }
   std::cout << type << std::endl;
   if (type == "thief") {
+    myNewEntity->setID(myNewEntity->getId());
     thiefs.push_back(myNewEntity);
     std::cout << "thief added" << std::endl;
   }
@@ -168,7 +169,7 @@ IEntity* SimulationModel::checkArrival(Vector3 package, IEntity* robot) {
     IEntity* closest = thiefs[0];
     double dist = closest->getPosition().dist(package);
     for (int i = 0; i < thiefs.size(); i++) {
-      if (dist < thiefs[i]->getPosition().dist(package)) {
+      if (dist > thiefs[i]->getPosition().dist(package)) {
         dist = thiefs[i]->getPosition().dist(package);
         closest = thiefs[i];
       }
@@ -176,7 +177,7 @@ IEntity* SimulationModel::checkArrival(Vector3 package, IEntity* robot) {
     // check if the robot is closer than the closest human
     if (package.dist(robot->getPosition()) < dist) {
       closest = robot;
-      std::cout<<"Robot dist to package: " << closest->getPosition().dist(package) << std::endl;
+      //std::cout<<"Robot dist to package: " << closest->getPosition().dist(package) << std::endl;
     }
     // only return something if it is within a specific threshold
     if (closest->getPosition().dist(package) < 20.0) {

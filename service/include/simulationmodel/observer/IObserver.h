@@ -19,10 +19,25 @@ class IObserver {
   /**
    * @brief Notifies observer of an entity arrival to package 
    * 
-   * @param message Type string address contains entity type
+   * @param type Type string address contains entity type
    * that reaches the package first
+   * @param id Type int of id of IEntity
   */
-  virtual void notifyArrive(std::string &message) {}
+  virtual void notifyArrive(std::string &type, int id) {}
+
+  /**
+   * @brief Sets id attribute
+   * 
+   * @param id_ Type int containing id
+  */
+  virtual void setID(int id_) { id = id_; }
+  
+  /**
+   * @brief Returns id 
+  */
+  virtual int getID() { return id; }
+ private: 
+  int id = 0;
 };
 
 #endif  // IOBSERVER_H_

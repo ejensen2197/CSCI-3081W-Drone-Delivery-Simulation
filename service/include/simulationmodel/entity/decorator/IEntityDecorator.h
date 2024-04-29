@@ -33,7 +33,7 @@ class IEntityDecorator : public T {
   virtual void notifyObservers(const std::string& message) const {return sub->notifyObservers(message);}
   virtual void addDropoffObserver(IObserver* o) {return sub->addDropoffObserver(o);}
   virtual void notifyDropoff(Vector3 coords) {return sub->notifyDropoff(coords);}
-  virtual void notifyArrival(std::string& message) {return sub->notifyArrival(message);} 
+  virtual void notifyArrival(std::string& message, int id) {return sub->notifyArrival(message, id);} 
 
  protected:
   T* sub = nullptr;
