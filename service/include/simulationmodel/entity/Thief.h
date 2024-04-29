@@ -51,11 +51,15 @@ class Thief : public Human {
   /**
    * @brief will stop stealing package if 
    * robot picks it up
+   * 
+   * @return void 
   */
   void cancelSteal();
 
   /**
    * @brief Thief steals package 
+   * 
+   * @return void
   */
   void steal();
 

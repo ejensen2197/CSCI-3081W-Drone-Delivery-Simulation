@@ -20,13 +20,13 @@ class Package;
 class Robot : public IEntity {
  public:
   /**
-   * @brief Constructor
+   * @brief Constructs a new robot object
    * @param obj JSON object containing the robot's information
    */
   Robot(const JsonObject& obj);
 
   /**
-   * @brief Updates the Package
+   * @brief Updates the Package state and position
    *
    * @param dt difference in time since last update
    */
@@ -40,13 +40,32 @@ class Robot : public IEntity {
   void receive(Package* p);
 
   // void notify(const std::string &message) const;
-
+  /**
+   * @brief notifies the robot of a package delivery, initializing movement towards it
+   *
+   * @param packageCoords coordinates of the delivered package
+   */
   void notifyDelivery(Vector3 packageCoords);
 
+  /**
+   * @brief package arrival at the destination
+   *
+   * @param message Message indicating an arrival
+   */
   void notifyArrive(std::string &message);
 
+  /**
+   * @brief sets the location of the target package
+   *
+   * @param location the coordinates where the package is located
+   */
   void setPackageLocation(Vector3 location);
 
+  /**
+   * @brief gets the location of the package associated with robot
+   *
+   * @return the current package location as a Vector3 object
+   */
   Vector3 getPackageLocation();
 
   bool requestedDelivery = true;
