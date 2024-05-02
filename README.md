@@ -46,3 +46,12 @@ __Packages__
 
 Packages spawn whenever a delivery is scheduled. The packages can be picked up by drones and then delivered to robots.
 
+# Docker
+
+The Docker link to our public repo can be accessed here:
+https://hub.docker.com/repository/docker/sjroberts2004/team-001-58-final-project/general
+the link could be pulled as follows, replace x with file destination
+
+# docker pull x/team-001-58-final-project:latest
+
+of course this is after login.
