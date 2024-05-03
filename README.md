@@ -45,39 +45,39 @@ Depending on the drone's pathing strategy, the drone when completing a delivery 
 
 __Packages__ 
 
-Packages will spawn whenever a delivery is scheduled. The packages can be picked up by drones and then delivered to the robots.
+_Packages will spawn whenever a delivery is scheduled. The packages can be picked up by drones and then delivered to the robots._
 
 __Helicopters__ 
 
-A Helicopter will spawn whenever the simulation is created. The helicopter moves randomly around in the air while the simulation is running. 
+_A Helicopter will spawn whenever the simulation is created. The helicopter moves randomly around in the air while the simulation is running._
 
 __Robots__
 
-Robots spawn whenever the delivery is scheduled and will move towards the package destination. The robot will receive the package once the delivery is complete. 
+_Robots spawn whenever the delivery is scheduled and will move towards the package destination. The robot will receive the package once the delivery is complete._ 
 
 __Humans__
 
-A Human spawns whenever the simulation is created. More humans can be spawned by pressing the "Add Human" button located at the top right of the simulation screen. A lot of humans can be added to the simulation, however, it may cause the simulation to lag. Humans will path randomly around. The porch pirates are colored red in the simulation and these humans are able to "steal" packages delivered by the drone if the pirate is in range of the delivered package. The pirates continue to move around randomly. 
+_A Human spawns whenever the simulation is created. More humans can be spawned by pressing the "Add Human" button located at the top right of the simulation screen. A lot of humans can be added to the simulation, however, it may cause the simulation to lag. Humans will path randomly around. The porch pirates are colored red in the simulation and these humans are able to "steal" packages delivered by the drone if the pirate is in range of the delivered package. The pirates continue to move around randomly._ 
 
 __Recharge Station__ 
 
-The recharge stations spread out around the campus and will serve as a place to recharge the battery of the drone once it hits a threshold. The drone will path to the recharge station and then charge to full battery.
+_The recharge stations spread out around the campus and will serve as a place to recharge the battery of the drone once it hits a threshold. The drone will path to the recharge station and then charge to full battery._
 
 __Porch Pirates__
 
-These are the humans colored "red" in the simulation. More porch pirates can be added by clicking the "Add Human" button. These porch pirates roam and move randomly on the ground. They are able to steal delivered packages if they are in range. The range is super small because it represents a real-life scenario where you have to be close enough to the package to know that it is there. So the porch pirate will be notified that there is a package within it's radius and then it will path towards the package to attempt a steal. 
+_These are the humans colored "red" in the simulation. More porch pirates can be added by clicking the "Add Human" button. These porch pirates roam and move randomly on the ground. They are able to steal delivered packages if they are in range. The range is super small because it represents a real-life scenario where you have to be close enough to the package to know that it is there. So the porch pirate will be notified that there is a package within it's radius and then it will path towards the package to attempt a steal._ 
 
 __Observers__
 
-The observers watch all of the entities happening in the simulation and report it as a notification. For example, "Drone picked up: test_package" would indicate that the drone has picked up the package for a delivery. "Helicopter has traveled 5 miles" would indicate that the helicopter has been flying around the simulation for 5 miles. 
+_The observers watch all of the entities happening in the simulation and report it as a notification. For example, "Drone picked up: test_package" would indicate that the drone has picked up the package for a delivery. "Helicopter has traveled 5 miles" would indicate that the helicopter has been flying around the simulation for 5 miles._ 
 
 __Pathing Strategies__
 
-The entities use one of the 5 pathing strategy design patterns: DFS, BFS, Dijkstra's, Beeline, and Astar. When scheduling a package for delivery, a choice between the 5 pathing strategies can be selected.
+_The entities use one of the 5 pathing strategy design patterns: DFS, BFS, Dijkstra's, Beeline, and Astar. When scheduling a package for delivery, a choice between the 5 pathing strategies can be selected._
 
 __Celebration__
 
-The drone will celebrate whenever a package is delivered at the destination. The celebrations are Jump and Spin, or a combination of them. The celebration depends on the pathing strategy used to deliver the package. 
+_The drone will celebrate whenever a package is delivered at the destination. The celebrations are Jump and Spin, or a combination of them. The celebration depends on the pathing strategy used to deliver the package._ 
 
 
 __New Features__
