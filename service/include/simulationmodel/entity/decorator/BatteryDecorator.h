@@ -57,7 +57,7 @@ class BatteryDecorator : public IEntityDecorator<Drone> {
   /**
    * @brief Returns trip distance
    */
-  double calcDist(); 
+  double calcDist();
 
  private:
   Drone* drone = nullptr;
@@ -67,7 +67,7 @@ class BatteryDecorator : public IEntityDecorator<Drone> {
   bool onDelivery = false;
   IStrategy* rechargeStrategy = nullptr;
   Vector3 lastPosition;
-
+  bool needCheck = true;
+  bool approved = false;
 };
-
-#endif
+#endif  // BATTERY_DECORATOR_H_

@@ -54,5 +54,4 @@ class RechargeStation : public IEntity {
     std::vector<Drone*> droneQue;
     double maxCapacity = 10;
 };
-
 #endif // RECHARGE_STATION_H

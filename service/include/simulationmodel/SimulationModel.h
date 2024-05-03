@@ -102,6 +102,7 @@ class SimulationModel : public IObserver {
   Vector3 nearestRecharge(Vector3 pos);
 
   std::deque<Package*> scheduledDeliveries;
+
  protected:
   IController& controller;
   std::map<int, IEntity*> entities;
@@ -111,7 +112,6 @@ class SimulationModel : public IObserver {
   CompositeFactory entityFactory;
   std::vector <Vector3> station;
   std::vector <IEntity*> thiefs;
-  
 };
 
 #endif

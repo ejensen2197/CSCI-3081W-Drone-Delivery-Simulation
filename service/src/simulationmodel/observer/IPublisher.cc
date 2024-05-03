@@ -13,7 +13,7 @@ void IPublisher::addDropoffObserver(IObserver* o) { dropoffObservers.insert(o); 
 void IPublisher::notifyDropoff(Vector3 coords) {
   for (auto& o : dropoffObservers) {
     o->notifyDelivery(coords);
-  } 
+  }
 }
 
 void IPublisher::notifyArrival(std::string& type, int id) {
@@ -21,5 +21,4 @@ void IPublisher::notifyArrival(std::string& type, int id) {
     std::cout << o << std::endl;
     o->notifyArrive(type, id);
   }
-  
 }

@@ -19,12 +19,13 @@ void Package::setStrategyName(std::string strategyName_) {
 void Package::update(double dt) {
   // check if package has arrived, if so try to check if entity has reached the package
   if(this->getArrived()) {
-    IEntity* nearest = model->checkArrival(this->getOwner()->getPackageLocation(), this->getOwner());
-    if(nearest) { // check that it is not null
+    IEntity* nearest = model->checkArrival(
+      this->getOwner()->getPackageLocation(), this->getOwner());
+    if (nearest) {  // check that it is not null
       JsonObject det = nearest->getDetails();
       std::string type = det["type"];
       if (type == "thief") {
-        this->notifyEntitys(type, nearest->getId()); 
+        this->notifyEntitys(type, nearest->getId());
         std::cout << "Package stolen" << std::endl;
         this->setArrived(false);
         model->removeEntity(this->getId());

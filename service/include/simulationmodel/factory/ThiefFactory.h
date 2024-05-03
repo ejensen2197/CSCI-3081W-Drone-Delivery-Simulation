@@ -15,7 +15,7 @@ class ThiefFactory : public IEntityFactory {
   /**
    * @brief Destructor for ThiefFactory class.
    **/
-  virtual ~ThiefFactory() {}
+  ~ThiefFactory() {}
 
   /**
    * @brief Creates entity using the given JSON object, if possible.

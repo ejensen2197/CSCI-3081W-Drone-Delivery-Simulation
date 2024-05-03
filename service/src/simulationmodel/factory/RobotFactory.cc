@@ -6,7 +6,6 @@ IEntity* RobotFactory::createEntity(const JsonObject& entity) {
     Robot* newRob = new Robot(entity);
     Vector3 origLoc = newRob->getPosition();
     newRob->setPackageLocation(newRob->getPosition());
-    
     // Define the radius within which the new position should be generated
     double radius = 400.0; // Adjust this value as needed
 

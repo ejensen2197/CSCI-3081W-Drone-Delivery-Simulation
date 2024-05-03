@@ -19,8 +19,8 @@ void ICelebrationDecorator::move(IEntity* entity, double dt) {
   }
 }
 
-double ICelebrationDecorator::eta() {
-  return 0;
+double ICelebrationDecorator::dist() {
+  return this->strategy->dist();
 }
 
 bool ICelebrationDecorator::isCompleted() { return time <= 0; }

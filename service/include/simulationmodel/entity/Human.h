@@ -21,5 +21,4 @@ class Human : public IEntity {
   IStrategy* movement = nullptr;
   bool atKeller = false;
 };
-
 #endif

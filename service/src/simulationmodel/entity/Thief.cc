@@ -23,7 +23,6 @@ std::string Thief::getColor() const {
   double lightness = 50;
   auto format = "hsl(%lf, %lf%%, %lf%%)";
   char color[100];
-  //snprintf(color, sizeof(color), format, 0, 100, 50);
   snprintf(color, sizeof(color), format, hue, saturation, lightness);
   return std::string(color);
 }
@@ -48,7 +47,7 @@ void Thief::update(double dt) {
 }
 
 void Thief::notifyDelivery(Vector3 packageCoords) {
-  if(this->position.dist(packageCoords) < 200 && !stealPackage){
+  if (this->position.dist(packageCoords) < 200 && !stealPackage) {
     packageCoords.y = 270;
     targetPackage = packageCoords;
     if(movement) delete movement;
@@ -60,7 +59,7 @@ void Thief::notifyDelivery(Vector3 packageCoords) {
 
 void Thief::cancelSteal() {
   stealPackage = false;
-  if(movement) delete movement;
+  if (movement) delete movement;
   Vector3 dest;
   dest.x = ((static_cast<double>(rand())) / RAND_MAX) * (2900) - 1400;
   dest.y = position.y;
@@ -73,7 +72,7 @@ void Thief::steal() {
   notifyObservers(message);
   std::cout << "Stole the package" << std::endl;
   stealPackage = false;
-  if(movement) delete movement;
+  if (movement) delete movement;
   Vector3 dest;
   dest.x = ((static_cast<double>(rand())) / RAND_MAX) * (2900) - 1400;
   dest.y = position.y;

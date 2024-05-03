@@ -19,7 +19,7 @@ SimulationModel::SimulationModel(IController& controller)
   entityFactory.addFactory(new HelicopterFactory());
   entityFactory.addFactory(new RechargeStationFactory());
   entityFactory.addFactory(new ThiefFactory());
-  }                              
+}
 
 SimulationModel::~SimulationModel() {
   // Delete dynamically allocated variables
@@ -33,7 +33,6 @@ IEntity* SimulationModel::createEntity(const JsonObject& entity) {
   std::string name = entity["name"];
   JsonArray position = entity["position"];
   std::cout << name << ": " << position << std::endl;
-  
   IEntity* myNewEntity = nullptr;
   if (myNewEntity = entityFactory.createEntity(entity)) {
     // Call AddEntity to add it to the view
@@ -44,7 +43,7 @@ IEntity* SimulationModel::createEntity(const JsonObject& entity) {
     myNewEntity->addObserver(this);
   }
   JsonObject det = myNewEntity->getDetails();
-  std::string type = det["type"]; 
+  std::string type = det["type"];
   if (type == "Recharge") {
     station.push_back(myNewEntity->getPosition());
   }
@@ -108,12 +107,12 @@ void SimulationModel::scheduleTrip(const JsonObject& details) {
   // why is there something in the set initially at this point despite the only adding observers after the if
   if (receiver && package) {
     package->addDropoffObserver(receiver);
-    for(int i = 0; i < thiefs.size(); i++) {
+    for (int i = 0; i < thiefs.size(); i++) {
       // add all currently existing thiefs to list of observers
       std::cout << "Thief added" << std::endl;
       package->addDropoffObserver(thiefs[i]);
     }
-    package->initDelivery(receiver); // when package->owner is called its null but receiver still exits
+    package->initDelivery(receiver);  // when package->owner is called its null but receiver still exits
     std::string strategyName = details["search"];
     package->setStrategyName(strategyName);
     scheduledDeliveries.push_back(package);

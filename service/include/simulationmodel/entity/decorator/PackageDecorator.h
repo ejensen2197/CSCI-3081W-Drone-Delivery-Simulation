@@ -19,11 +19,11 @@ class PackageDecorator : public IEntityDecorator<Package> {
   virtual void handOff() {
     if (getOwner()) getOwner()->receive(this);
   }
-  //virtual void update(double dt) {sub->update(dt);}
-
   virtual bool getArrived() { return sub->getArrived(); }
   virtual void setArrived(bool val) { sub->setArrived(val); }
-  virtual void notifyEntitys(std::string type, int id) { sub->notifyEntitys(type, id); }
+  virtual void notifyEntitys(std::string type, int id) { 
+    sub->notifyEntitys(type, id); 
+  }
 };
 
 #endif

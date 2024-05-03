@@ -42,7 +42,7 @@ void Drone::setPackageStrat() {
 
 void Drone::getNextDelivery() {
   if (model && model->scheduledDeliveries.size() > 0) {
-    package = model->scheduledDeliveries.front(); // package has no owner at this point
+    package = model->scheduledDeliveries.front();
     model->scheduledDeliveries.pop_front();
 
     if (package) {
@@ -85,10 +85,10 @@ void Drone::update(double dt) {
 
   if (toPackage) {
     toPackage->move(this, dt);
-    
+
     if (toPackage->isCompleted()) {
       std::string message = getName() + " picked up: " + package->getName();
-      notifyObservers(message);  
+      notifyObservers(message);
       delete toPackage;
       toPackage = nullptr;
       pickedUp = true;
@@ -107,8 +107,7 @@ void Drone::update(double dt) {
       delete toFinalDestination;
       toFinalDestination = nullptr;
       package->setPosition(position);
-      package->dropOff(); //alerts subs that it was delivered
-      //package->handOff();
+      package->dropOff();  // alerts subs that it was delivered
       package = nullptr;
       available = true;
       pickedUp = false;

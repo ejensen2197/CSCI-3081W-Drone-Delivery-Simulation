@@ -22,7 +22,7 @@ class HumanFactory : public IEntityFactory {
    * @return Entity that was created if it was created successfully, or a
    *nullpointer if creation failed.
    **/
-  IEntity* createEntity(const JsonObject& entity);  
+  IEntity* createEntity(const JsonObject& entity);
 };
 
 #endif

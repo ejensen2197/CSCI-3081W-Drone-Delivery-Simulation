@@ -21,8 +21,8 @@ class Thief : public Human {
   ~Thief();
 
   /**
-   * @brief Thief constructor
-   * @param obj JSON object containing the thief's information
+   * @brief update the thief's movement as during simulation
+   * @param dt delta time
    */
   void update(double dt);
 
@@ -72,4 +72,4 @@ class Thief : public Human {
   Vector3 targetPackage;
 };
 
-#endif // THIEF_H_
+#endif  // THIEF_H_

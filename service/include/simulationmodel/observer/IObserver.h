@@ -36,7 +36,8 @@ class IObserver {
    * @brief Returns id 
   */
   virtual int getID() { return id; }
- private: 
+
+ private:
   int id = 0;
 };
 

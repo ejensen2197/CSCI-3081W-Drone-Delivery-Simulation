@@ -8,27 +8,23 @@ Robot::Robot(const JsonObject& obj) : IEntity(obj) {}
 // void Robot::notify(const std::string &message) const {}
 
 void Robot::notifyDelivery(Vector3 packageCoords) {
-    std::cout<<"Delivery!!!!!: " <<packageCoords <<std::endl;
+    std::cout << "Delivery!!!!!: " << packageCoords << std::endl;
     packageCoords.y = 270;
     this->speed = 20;
-    toPackage =  new AstarStrategy(this->position, packageCoords, model->getGraph());   
+    toPackage =  new AstarStrategy(
+        this->position, packageCoords, model->getGraph());
 }
 
 void Robot::update(double dt) {
-    //check if target package exists 
+    // check if target package exists
     if (toPackage && !stolen) {
         toPackage->move(this, dt);
 
         if (toPackage->isCompleted()) {
             delete toPackage;
             toPackage = nullptr;
-        } 
+        }
     }
-
-    
-    //then check if target package exists, if it does and toPackage->completed then call receive and then pacakge notify it was recieved
-    //if it does not exist delete toPackag
-    
 }
 
 void Robot::notifyArrive(std::string& type, int id) {
@@ -49,4 +45,4 @@ Vector3 Robot::getPackageLocation() {
     return packageLocation;
 }
 
-void Robot::receive(Package* p) { package = p; } //check if package is stolen if false then set delivered to true 
+void Robot::receive(Package* p) { package = p; }

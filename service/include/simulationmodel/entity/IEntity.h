@@ -115,7 +115,7 @@ class IEntity : public IPublisher, public IObserver {
    * @param dt The time step of the update.
    */
   virtual void update(double dt) = 0;
-  
+
   void notify(const std::string &message) const;
   
  protected:
