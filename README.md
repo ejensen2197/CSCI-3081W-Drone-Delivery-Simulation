@@ -80,9 +80,9 @@ __Celebration__
 _The drone will celebrate whenever a package is delivered at the destination. The celebrations are Jump and Spin, or a combination of them. The celebration depends on the pathing strategy used to deliver the package._ 
 
 
-__New Features__
+# New Features
 
-Feature 1: Recharge Station
+__Feature 1: Recharge Station__
 
 _Functionality:_ The drone has a battery life and the recharge station is a way for the drone to recharge it's battery in order to deliver packages. 
 
@@ -93,7 +93,7 @@ _Design Pattern(s):_ We used the decorator design pattern for the recharge stati
 _How to use:_ After a few package deliveries in the simulation, the drone will start to decrease in battery life and it will automatically navigate to a recharge station to recharge in order to deliver more packages. 
 
 
-Feature 2: Porch Pirates
+__Feature 2: Porch Pirates__
 
 _Functionality:_ These are humans that roam around the simulation and are able to "steal" delivered packages if they are within range of the package. 
 
