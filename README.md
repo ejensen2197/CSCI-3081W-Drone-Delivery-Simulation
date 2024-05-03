@@ -37,10 +37,10 @@ This address should load the page of simulation. There should be a box for navig
 
 __Drones__
 
-A Drone will spawn whenever the simulation is created. Drones in the simulation will receive delivery requests through 
+_A Drone will spawn whenever the simulation is created. Drones in the simulation will receive delivery requests through 
 the scheduling page at the top right. The drones use many different pathing strategies such as: Astar, Beeline, Dijkstra, Breadth First Search,
 and Depth First Search to retrieve packages and deliver those packages to robots. 
-Depending on the drone's pathing strategy, the drone when completing a delivery will celebrate by either spinning or jumping.
+Depending on the drone's pathing strategy, the drone when completing a delivery will celebrate by either spinning or jumping._
 
 
 __Packages__ 
