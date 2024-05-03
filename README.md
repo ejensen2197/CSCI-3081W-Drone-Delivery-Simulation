@@ -7,9 +7,8 @@ X500's: jens2543, nguy4773, robe2210, yang6316
 __PROJECT OVERVIEW__
 
 The project is a simulation of a Drone Delivery System that includes packages to be delivered and robots who are the recipients of the packages. 
-It also includes other features to make the simulation seem more lively as humans and helicopters move around and interact during the simulation. 
+It also includes other features to make the simulation seem more lively as humans/helicopters/thiefs move around and interact during the simulation. 
 
-- ADD MORE?
 
 
 __HOW TO RUN SIMULATION__
