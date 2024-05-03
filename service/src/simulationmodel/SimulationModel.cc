@@ -104,7 +104,6 @@ void SimulationModel::scheduleTrip(const JsonObject& details) {
     }
   }
 
-  // why is there something in the set initially at this point despite the only adding observers after the if
   if (receiver && package) {
     package->addDropoffObserver(receiver);
     for (int i = 0; i < thiefs.size(); i++) {
@@ -112,7 +111,7 @@ void SimulationModel::scheduleTrip(const JsonObject& details) {
       std::cout << "Thief added" << std::endl;
       package->addDropoffObserver(thiefs[i]);
     }
-    package->initDelivery(receiver);  // when package->owner is called its null but receiver still exits
+    package->initDelivery(receiver);
     std::string strategyName = details["search"];
     package->setStrategyName(strategyName);
     scheduledDeliveries.push_back(package);
@@ -176,7 +175,6 @@ IEntity* SimulationModel::checkArrival(Vector3 package, IEntity* robot) {
     // check if the robot is closer than the closest human
     if (package.dist(robot->getPosition()) < dist) {
       closest = robot;
-      //std::cout<<"Robot dist to package: " << closest->getPosition().dist(package) << std::endl;
     }
     // only return something if it is within a specific threshold
     if (closest->getPosition().dist(package) < 20.0) {

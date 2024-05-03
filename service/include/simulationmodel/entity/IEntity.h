@@ -117,7 +117,7 @@ class IEntity : public IPublisher, public IObserver {
   virtual void update(double dt) = 0;
 
   void notify(const std::string &message) const;
-  
+
  protected:
   SimulationModel* model = nullptr;
   int id = -1;

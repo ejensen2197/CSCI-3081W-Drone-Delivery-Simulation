@@ -4,9 +4,9 @@
 
 IEntity* HumanFactory::createEntity(const JsonObject& entity) {
   std::string type = entity["type"];
-  
-  // create a 50/50 rand, if the entity is a thief or a human, if theif call theif factory, else human
-  if(type == "human") {
+
+  // create a 50/50 rand, if the entity is a thief or a human
+  if (type == "human") {
     if (rand() % 2 == 0) {
       type = "thief";
       JsonObject newEnt = entity;

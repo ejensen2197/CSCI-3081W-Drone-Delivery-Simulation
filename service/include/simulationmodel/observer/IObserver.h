@@ -31,7 +31,7 @@ class IObserver {
    * @param id_ Type int containing id
   */
   virtual void setID(int id_) { id = id_; }
-  
+
   /**
    * @brief Returns id 
   */

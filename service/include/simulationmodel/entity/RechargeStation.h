@@ -24,34 +24,5 @@ class RechargeStation : public IEntity {
   ~RechargeStation();
 
   void update(double dt);
-
-  /**
-   * @brief Charges the battery of the drone
-   * @param dt distance traveled
-   */
-    // void chargeBattery(double dt);
-
-    /**
-     * @brief Adds a drone to the recharge station
-     * @param drone drone to be added
-     */
-
-    virtual void addDrone(Drone* drone);
-
-    /**
-     * @brief Removes a drone from the recharge station
-     * @param drone drone to be removed
-     */
-    virtual void removeDrone(Drone* drone);
-
-    /**
-     * @brief Returns the maximum capacity of the recharge station
-     * @return maximum capacity of the recharge station
-     */
-
-    double reacherMaxCapacity();
-    protected:
-    std::vector<Drone*> droneQue;
-    double maxCapacity = 10;
 };
-#endif // RECHARGE_STATION_H
+#endif  // RECHARGE_STATION_H

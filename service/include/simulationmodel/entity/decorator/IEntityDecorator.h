@@ -38,7 +38,9 @@ class IEntityDecorator : public T {
   virtual void addDropoffObserver(IObserver* o) {
     return sub->addDropoffObserver(o);
   }
-  virtual void notifyDropoff(Vector3 coords) {return sub->notifyDropoff(coords);}
+  virtual void notifyDropoff(Vector3 coords) {
+    return sub->notifyDropoff(coords);
+  }
   virtual void notifyArrival(std::string& message, int id) {
     return sub->notifyArrival(message, id);
   }

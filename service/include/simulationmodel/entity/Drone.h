@@ -48,7 +48,7 @@ class Drone : public IEntity {
   /**
   * @brief Sets toPackage strategy based off of drone's location
   */
-  void setPackageStrat(); 
+  void setPackageStrat();
 
   /**
    * @brief Gets the next delivery in the scheduler
@@ -79,7 +79,6 @@ class Drone : public IEntity {
   Package* package = nullptr;
   IStrategy* toPackage = nullptr;
   IStrategy* toFinalDestination = nullptr;
-  
 };
 
 #endif

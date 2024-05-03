@@ -50,9 +50,10 @@ void Thief::notifyDelivery(Vector3 packageCoords) {
   if (this->position.dist(packageCoords) < 200 && !stealPackage) {
     packageCoords.y = 270;
     targetPackage = packageCoords;
-    if(movement) delete movement;
+    if (movement) delete movement;
     std::cout <<"I want Package" << std::endl;
-    movement = new AstarStrategy(this->position, packageCoords, model->getGraph());
+    movement = new AstarStrategy(this->position,
+              packageCoords, model->getGraph());
     stealPackage = true;
   }
 }

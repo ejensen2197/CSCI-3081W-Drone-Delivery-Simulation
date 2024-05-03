@@ -17,8 +17,8 @@ void Package::setStrategyName(std::string strategyName_) {
 }
 
 void Package::update(double dt) {
-  // check if package has arrived, if so try to check if entity has reached the package
-  if(this->getArrived()) {
+  // check if package has arrived and if entity has reached the it
+  if (this->getArrived()) {
     IEntity* nearest = model->checkArrival(
       this->getOwner()->getPackageLocation(), this->getOwner());
     if (nearest) {  // check that it is not null

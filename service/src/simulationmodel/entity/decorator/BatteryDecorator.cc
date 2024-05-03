@@ -11,7 +11,7 @@ BatteryDecorator::~BatteryDecorator() {
     delete this->drone;
 }
 
-void BatteryDecorator::update(double dt) {   
+void BatteryDecorator::update(double dt) {
     // if at the recharge it should stay there and recharge until at full
     if (atRecharge) {
         if (batteryLevel > maxCapacity) {
@@ -27,18 +27,20 @@ void BatteryDecorator::update(double dt) {
         // idle
         needCheck = true;
         sub->update(dt);
-    } else if (canMakeTrip(dt) && sub->isAvailable()==false) {
+    } else if (canMakeTrip(dt) && sub->isAvailable() == false) {
         // if it can make the delivery without dying
-        needCheck = false; 
+        needCheck = false;
         sub->update(dt);
         double diff = this->lastPosition.dist(sub->getPosition());
         this->batteryLevel = batteryLevel - (diff/60);
         this->lastPosition = sub->getPosition();
-    } else if ((!canMakeTrip(dt) && sub->isAvailable()==false) || batteryLevel < 20) {
+    } else if ((!canMakeTrip(dt) &&
+                sub->isAvailable() == false) ||
+                batteryLevel < 20) {
         // case for needing to recharge
         std::cout << "need recharge" << std::endl;
         findRecharge(dt);
-    } 
+    }
 }
 
 double BatteryDecorator::getBatteryLevel() {
@@ -58,22 +60,24 @@ double BatteryDecorator::calcDist() {
         IStrategy* finalDestStrat = sub->getFinalDestStrat();
         totalDist += finalDestStrat->dist();
     }
-    //std::cout << "total Dist: " << totalDist  << std::endl;
     return totalDist;
 }
 
 // package location speed and distance tells how long
 bool BatteryDecorator::canMakeTrip(double dt) {
-    if (needCheck) { 
+    if (needCheck) {
         // gets how much battery path will take
         double pathBattery = calcDist();
         // distance we can travel
         double calcPosDistance = batteryLevel*50;
         double threshhold = 10;
         // calculates min distance to recharge station with this
-        if (pathBattery + (threshhold * 60) < calcPosDistance ) {
+        if (pathBattery + (threshhold * 60) < calcPosDistance) {
             approved = true;
-            std::cout << "Can make trip total battery need is: " << pathBattery +(threshhold * 60) << " total path battery of drone: " << calcPosDistance << std::endl;
+            std::cout << "Can make trip total battery need is: "
+            << pathBattery +(threshhold * 60)
+            << " total path battery of drone: "
+            << calcPosDistance << std::endl;
             return approved;
         }
         std::cout << "Cannot make trip" << std::endl;
@@ -99,19 +103,22 @@ void BatteryDecorator::findRecharge(double dt) {
         std::cout << "nearest Recharge: " << nearestRecharge << std::endl;
         if (rechargeStrategy == nullptr) {
             // strategy to nearest recharge station
-            rechargeStrategy = new BeelineStrategy(sub->getPosition(), nearestRecharge);
+            rechargeStrategy = new BeelineStrategy(sub->getPosition(),
+                                    nearestRecharge);
         }
-        rechargeStrategy->move(sub, dt); // move drone to recharge station
+        rechargeStrategy->move(sub, dt);  // move drone to recharge station
         double diff = this->lastPosition.dist(sub->getPosition());
         this->batteryLevel = batteryLevel - (diff/100);
         this->lastPosition = sub->getPosition();
-        // checking that the drone arrived to recharge station also means strategy isCompleted
-        if ((sub->getPosition() - nearestRecharge).magnitude() < 1.0 || rechargeStrategy->isCompleted()) {
-            atRecharge = true; // set to true so the update function knows to charge drone
+        // checking that the drone arrived to recharge station
+        if ((sub->getPosition() - nearestRecharge).magnitude() < 1.0 ||
+        rechargeStrategy->isCompleted()) {
+            // set to true so the update function knows to charge drone
+            atRecharge = true;
             delete rechargeStrategy;
             rechargeStrategy = nullptr;
             if (sub->isAvailable() == false) {
-               sub->setPackageStrat(); // calling new package creation
+               sub->setPackageStrat();  // calling new package creation
             }
         }
     }
