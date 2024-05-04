@@ -2,8 +2,8 @@
 #include "SimulationModel.h"
 
 BatteryDecorator::BatteryDecorator(Drone* d) : IEntityDecorator(d) {
-    this->batteryLevel = 100;
-    this->maxCapacity = 100;
+    this->batteryLevel = 200;
+    this->maxCapacity = 200;
     this->lastPosition = sub->getPosition();
 }
 
@@ -38,7 +38,6 @@ void BatteryDecorator::update(double dt) {
                 sub->isAvailable() == false) ||
                 batteryLevel < 20) {
         // case for needing to recharge
-        std::cout << "need recharge" << std::endl;
         findRecharge(dt);
     }
 }
@@ -80,7 +79,7 @@ bool BatteryDecorator::canMakeTrip(double dt) {
             << calcPosDistance << std::endl;
             return approved;
         }
-        std::cout << "Cannot make trip" << std::endl;
+        // std::cout << "Cannot make trip" << std::endl;
         approved = false;
         return approved;
     }
@@ -95,12 +94,11 @@ bool BatteryDecorator::isDead() {
 }
 
 void BatteryDecorator::findRecharge(double dt) {
-    std::cout << "nearest Recharge: "  << std::endl;
     if (model) {
         // logic to get nearest recharge station
         Vector3 nearestRecharge = model->nearestRecharge(sub->getPosition());
         nearestRecharge.y = sub->getPosition().y;
-        std::cout << "nearest Recharge: " << nearestRecharge << std::endl;
+        // std::cout << "nearest Recharge: " << nearestRecharge << std::endl;
         if (rechargeStrategy == nullptr) {
             // strategy to nearest recharge station
             rechargeStrategy = new BeelineStrategy(sub->getPosition(),

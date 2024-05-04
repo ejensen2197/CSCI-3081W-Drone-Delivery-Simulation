@@ -30,11 +30,21 @@ SimulationModel::~SimulationModel() {
 }
 
 IEntity* SimulationModel::createEntity(const JsonObject& entity) {
-  std::string name = entity["name"];
-  JsonArray position = entity["position"];
+  JsonObject newEnt = entity;
+  std::string entType = newEnt["type"];
+  // 50% a human becomes a thief upon spawn
+  if (entType == "human") {
+    if (rand() % 2 == 0) {
+      entType = "thief";
+      newEnt["type"] = "thief";
+      newEnt["name"] = "Thief";
+    }
+  }
+  std::string name = newEnt["name"];
+  JsonArray position = newEnt["position"];
   std::cout << name << ": " << position << std::endl;
   IEntity* myNewEntity = nullptr;
-  if (myNewEntity = entityFactory.createEntity(entity)) {
+  if (myNewEntity = entityFactory.createEntity(newEnt)) {
     // Call AddEntity to add it to the view
     myNewEntity->linkModel(this);
     controller.addEntity(*myNewEntity);
