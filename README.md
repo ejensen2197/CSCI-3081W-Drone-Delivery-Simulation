@@ -119,7 +119,7 @@ We would try to all complete tasks within the same implementations so it is easi
 
 # UML Diagram
 
-link pdf:
+The pdf is in the repository.
 
 
 # Docker
